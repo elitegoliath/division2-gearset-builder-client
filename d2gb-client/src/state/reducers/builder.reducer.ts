@@ -5,14 +5,14 @@ import * as Actions from '../actions/builder.actions';
  * Builder State interface.
  */
 export type iBuilderState = {
-    numTracker: number;
+
 }
 
 /**
  * Default settings for the builder state.
  */
 export const defaultBuilderState: iBuilderState = {
-    numTracker: 13,
+
 }
 
 /**
@@ -28,7 +28,7 @@ const INITIAL_STATE: iBuilderState = defaultBuilderState;
  */
 export const BuilderReducer = (state: iBuilderState = INITIAL_STATE, action: iReduxAction): iBuilderState => {
     switch (action.type) {
-        case Actions.CHANGE_TRACKER: return {...state, ...action.payload};
+        // case Actions.CHANGE_TRACKER: return {...state, ...action.payload};
         default: return state
     }
 }
