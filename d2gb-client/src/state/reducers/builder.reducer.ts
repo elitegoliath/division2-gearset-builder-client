@@ -1,5 +1,4 @@
 import { iReduxAction } from '../actions';
-import * as Actions from '../actions/builder.actions';
 
 /**
  * Builder State interface.

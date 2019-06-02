@@ -2,9 +2,8 @@ import React from 'react';
 import './index.scss';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Button } from 'semantic-ui-react';
 import { EquipmentCard } from '../../components/equipmentCard';
-import { eGearType } from '../../types/gear.types';
+import { GearSet } from '../../models/gearSet.model';
 // import { changeNumTracker } from '../../state/actions/builder.actions';
 
 /**
@@ -35,15 +34,12 @@ export const BuilderPage = (_props: any) => {
     //         <Button onClick={clickPlus}>+</Button>
     //     </div>
     // );
+    const gearSet = new GearSet();
 
     return (
         <div className='root'>
-            <EquipmentCard equipmentType={eGearType.Chest}></EquipmentCard>
+            <EquipmentCard equipmentItem={gearSet.mainWeapon}></EquipmentCard>
         </div>
-    );
-
-    return (
-        <div className='root'></div>
     );
 }
 
