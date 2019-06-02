@@ -2,7 +2,7 @@ import { Record } from 'immutable';
 import { EquipmentItem, eEquipmentCategory } from './equipment.model';
 
 export type tGearSet = {
-    mainWeapon?: EquipmentItem;
+    primaryWeapon?: EquipmentItem;
     secondaryWeapon?: EquipmentItem;
     sidearm?: EquipmentItem;
     mask?: EquipmentItem;
@@ -16,7 +16,7 @@ export type tGearSet = {
 };
 
 const DefaultGearSet = Record({
-    mainWeapon: new EquipmentItem({ category: eEquipmentCategory.Weapon }),
+    primaryWeapon: new EquipmentItem({ category: eEquipmentCategory.Weapon }),
     secondaryWeapon: new EquipmentItem({ category: eEquipmentCategory.Weapon }),
     sidearm: new EquipmentItem({ category: eEquipmentCategory.Weapon }),
     mask: new EquipmentItem({ category: eEquipmentCategory.Armor }),

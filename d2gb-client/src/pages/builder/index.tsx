@@ -3,14 +3,18 @@ import './index.scss';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { EquipmentCard } from '../../components/equipmentCard';
-import { GearSet } from '../../models/gearSet.model';
+import { iAppState } from '../../state/reducers';
 // import { changeNumTracker } from '../../state/actions/builder.actions';
+
+export interface iBuilderPageProps {
+    state: iAppState;
+}
 
 /**
  * Main Component
  * @param _props 
  */
-export const BuilderPage = (_props: any) => {
+export const BuilderPage = (_props: iBuilderPageProps) => {
     // Number stored in state.
     // const numVal = _props.builder.numTracker;
 
@@ -34,11 +38,14 @@ export const BuilderPage = (_props: any) => {
     //         <Button onClick={clickPlus}>+</Button>
     //     </div>
     // );
-    const gearSet = new GearSet();
+    const gearSet = _props.state.builderState.gearSet;
 
     return (
         <div className='root'>
-            <EquipmentCard equipmentItem={gearSet.mainWeapon}></EquipmentCard>
+            <EquipmentCard equipmentItem={gearSet.primaryWeapon}></EquipmentCard>
+            <EquipmentCard equipmentItem={gearSet.secondaryWeapon}></EquipmentCard>
+            <EquipmentCard equipmentItem={gearSet.sidearm}></EquipmentCard>
+            <EquipmentCard equipmentItem={gearSet.mask}></EquipmentCard>
         </div>
     );
 }
@@ -58,7 +65,7 @@ export const BuilderPage = (_props: any) => {
  * Connect state to props.
  * @param _state 
  */
-const mapStateToProps = (_state: any) => ({..._state});
+const mapStateToProps = (_state: iAppState) => ({ state: { ..._state } });
 
 /**
  * Map dispatchers to props.

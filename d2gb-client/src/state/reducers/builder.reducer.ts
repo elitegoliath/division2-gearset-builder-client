@@ -1,17 +1,18 @@
 import { iReduxAction } from '../actions';
+import { GearSet } from '../../models/gearSet.model';
 
 /**
  * Builder State interface.
  */
 export type iBuilderState = {
-
+    gearSet: GearSet;
 }
 
 /**
- * Default settings for the builder state.
+ * Initial state for the builder.
  */
 export const defaultBuilderState: iBuilderState = {
-
+    gearSet: new GearSet(),
 }
 
 /**
