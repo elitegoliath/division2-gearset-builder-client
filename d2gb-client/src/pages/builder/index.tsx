@@ -4,8 +4,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { EquipmentCard } from '../../components/equipmentCard';
 import { iAppState } from '../../state/reducers';
-// import { changeNumTracker } from '../../state/actions/builder.actions';
 
+/**
+ * Props interface for the Builder Page.
+ */
 export interface iBuilderPageProps {
     state: iAppState;
 }
@@ -15,29 +17,6 @@ export interface iBuilderPageProps {
  * @param _props 
  */
 export const BuilderPage = (_props: iBuilderPageProps) => {
-    // Number stored in state.
-    // const numVal = _props.builder.numTracker;
-
-    // Function to change number in state.
-    // const { changeNumTracker } = _props;
-
-    // const clickPlus = () => {
-    //     changeNumTracker(numVal + 1);
-    //     console.log('Plus', numVal);
-    // };
-
-    // const clickMinus = () => {
-    //     changeNumTracker(numVal - 1);
-    //     console.log('Minus', numVal);
-    // };
-
-    // return (
-    //     <div className='root'>
-    //         <Button onClick={clickMinus}>-</Button>
-    //         <NumberTracker num={numVal}></NumberTracker>
-    //         <Button onClick={clickPlus}>+</Button>
-    //     </div>
-    // );
     const gearSet = _props.state.builderState.gearSet;
 
     return (
@@ -51,19 +30,7 @@ export const BuilderPage = (_props: iBuilderPageProps) => {
 }
 
 /**
- * Sub-components
- * @param _props 
- */
-// const NumberTracker = (_props: any) => {
-//     const {num} = _props;
-//     return (
-//         <div>{num}</div>
-//     );
-// }
-
-/**
  * Connect state to props.
- * @param _state 
  */
 const mapStateToProps = (_state: iAppState) => ({ state: { ..._state } });
 
