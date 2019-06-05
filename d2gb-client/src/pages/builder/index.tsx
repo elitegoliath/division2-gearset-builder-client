@@ -21,11 +21,28 @@ export const BuilderPage = (_props: iBuilderPageProps) => {
 
     return (
         <div className='builder-page-root'>
-            <div className='set-card-container'>
-                <EquipmentCard equipmentItem={gearSet.primaryWeapon}></EquipmentCard>
-                <EquipmentCard equipmentItem={gearSet.secondaryWeapon}></EquipmentCard>
-                <EquipmentCard equipmentItem={gearSet.sidearm}></EquipmentCard>
-                <EquipmentCard equipmentItem={gearSet.mask}></EquipmentCard>
+            <div className='set-card__container'>
+                <div className='set-card__row'>
+                    <EquipmentCard equipmentItem = { gearSet.primaryWeapon }></EquipmentCard>
+                    <EquipmentCard equipmentItem = { gearSet.secondaryWeapon }></EquipmentCard>
+                    <EquipmentCard equipmentItem = { gearSet.sidearm }></EquipmentCard>
+                </div>
+                <div className='set-card__row'>
+                    <EquipmentCard equipmentItem = { gearSet.mask }></EquipmentCard>
+                    <EquipmentCard equipmentItem = { gearSet.backpack }></EquipmentCard>
+                </div>
+                <div className='set-card__row'>
+                    <EquipmentCard equipmentItem = { gearSet.chest }></EquipmentCard>
+                    <EquipmentCard equipmentItem = { gearSet.gloves }></EquipmentCard>
+                </div>
+                <div className='set-card__row'>
+                    <EquipmentCard equipmentItem = { gearSet.holster }></EquipmentCard>
+                    <EquipmentCard equipmentItem = { gearSet.kneepads }></EquipmentCard>
+                </div>
+                <div className='set-card__row'>
+                    <EquipmentCard equipmentItem = { gearSet.firstGadget }></EquipmentCard>
+                    <EquipmentCard equipmentItem = { gearSet.secondGadget }></EquipmentCard>
+                </div>
             </div>
         </div>
     );

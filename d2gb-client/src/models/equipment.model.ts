@@ -39,11 +39,13 @@ export enum eEquipmentCategory {
 export type tEquipmentItem = {
     category?: number;
     type?: number;
+    icon?: string;
 }
 
 const DefaultEquipmentItem = Record({
     category: null,
     type: null,
+    icon: '',
 }, 'Equipment Model');
 
 export class EquipmentItem extends DefaultEquipmentItem implements tEquipmentItem {
