@@ -20,11 +20,13 @@ export const BuilderPage = (_props: iBuilderPageProps) => {
     const gearSet = _props.state.builderState.gearSet;
 
     return (
-        <div className='root'>
-            <EquipmentCard equipmentItem={gearSet.primaryWeapon}></EquipmentCard>
-            <EquipmentCard equipmentItem={gearSet.secondaryWeapon}></EquipmentCard>
-            <EquipmentCard equipmentItem={gearSet.sidearm}></EquipmentCard>
-            <EquipmentCard equipmentItem={gearSet.mask}></EquipmentCard>
+        <div className='builder-page-root'>
+            <div className='set-card-container'>
+                <EquipmentCard equipmentItem={gearSet.primaryWeapon}></EquipmentCard>
+                <EquipmentCard equipmentItem={gearSet.secondaryWeapon}></EquipmentCard>
+                <EquipmentCard equipmentItem={gearSet.sidearm}></EquipmentCard>
+                <EquipmentCard equipmentItem={gearSet.mask}></EquipmentCard>
+            </div>
         </div>
     );
 }

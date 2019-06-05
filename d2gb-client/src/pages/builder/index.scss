@@ -1,5 +1,18 @@
 @import '../../assets/global.scss';
 
-.root {
-    color: $textLight;
+.builder-page-root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: auto;
+    height: 100%;
+    width: 100%;
+
+    .set-card-container {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 500px;
+        max-height: 500px;
+        background-color: aqua;
+    }
 }
