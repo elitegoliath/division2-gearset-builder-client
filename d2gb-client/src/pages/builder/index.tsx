@@ -46,7 +46,7 @@ export const BuilderPage = (_props: iBuilderPageProps) => {
             </div>
         </div>
     );
-}
+};
 
 /**
  * Connect state to props.
