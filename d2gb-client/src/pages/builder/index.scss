@@ -1,5 +1,21 @@
 @import '../../assets/global.scss';
 
-.root {
-    color: $textLight;
+.builder-page-root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: auto;
+    height: 100%;
+    width: 100%;
+
+    .set-card__container {
+        display: inline-flex;
+        flex-direction: column;
+
+        .set-card__row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+    }
 }
