@@ -12,7 +12,8 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const databaseRef = firebase.database().ref();
+const storageRef = firebase.storage().ref();
 
 export const FirebaseRefs = {
-    images: databaseRef.child('images'),
+    icons: storageRef.child('images/icons'),
 }

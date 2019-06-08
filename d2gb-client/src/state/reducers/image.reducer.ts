@@ -13,7 +13,7 @@ const INITIAL_STATE: iImageState = defaultImageState;
 
 export const ImageReducer = (_state: iImageState = INITIAL_STATE, _action: iReduxAction): iImageState => {
     switch (_action.type) {
-        case Actions.FETCH_IMAGE: return { ..._state, ..._action.payload }
+        case Actions.FETCH_IMAGE_URL: return { ..._state, ..._action.payload }
         default: return _state;
     }
 }
