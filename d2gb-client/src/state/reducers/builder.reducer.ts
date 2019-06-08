@@ -26,9 +26,9 @@ const INITIAL_STATE: iBuilderState = defaultBuilderState;
  * @param state 
  * @param action 
  */
-export const BuilderReducer = (state: iBuilderState = INITIAL_STATE, action: iReduxAction): iBuilderState => {
-    switch (action.type) {
+export const BuilderReducer = (_state: iBuilderState = INITIAL_STATE, _action: iReduxAction): iBuilderState => {
+    switch (_action.type) {
         // case Actions.CHANGE_TRACKER: return {...state, ...action.payload};
-        default: return state
+        default: return _state
     }
 }

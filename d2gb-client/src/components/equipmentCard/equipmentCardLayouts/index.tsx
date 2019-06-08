@@ -38,7 +38,6 @@ export const WeaponLayout = (_props: iEquipmentCardLayout) => {
 
 export const ArmorLayout = (_props: iEquipmentCardLayout) => {
     const { equipmentItem } = _props;
-    console.log(equipmentItem.icon);
 
     return (
         <div className='equipment-card-layout-root' onClick={ 

@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 import { BuilderReducer, defaultBuilderState, iBuilderState } from './builder.reducer';
+import { iImageState, defaultImageState, ImageReducer } from './image.reducer';
 
 
 export type iAppState = {
     builderState: iBuilderState;
+    imageState: iImageState;
 }
 
 /**
@@ -11,6 +13,7 @@ export type iAppState = {
  */
 export const INITIAL_STATE: iAppState = {
     builderState: defaultBuilderState,
+    imageState: defaultImageState,
 }
 
 /**
@@ -18,4 +21,5 @@ export const INITIAL_STATE: iAppState = {
  */
 export default combineReducers({
     builderState: BuilderReducer,
+    imageState: ImageReducer,
 });
