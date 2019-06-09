@@ -15,7 +15,7 @@ export type tGearSet = {
     secondGadget?: EquipmentItem;
 };
 
-const DefaultGearSet = Record({
+const DefaultGearSet = Record<tGearSet>({
     primaryWeapon: new EquipmentItem({ category: eEquipmentCategory.Weapon }),
     secondaryWeapon: new EquipmentItem({ category: eEquipmentCategory.Weapon }),
     sidearm: new EquipmentItem({ category: eEquipmentCategory.Weapon }),

@@ -6,10 +6,11 @@ import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import reduxThunk from 'redux-thunk';
+import thunk from 'redux-thunk';
 import reducers from './state/reducers';
+import 'why-did-you-update-redux';
 
-const store = createStore(reducers, applyMiddleware(reduxThunk));
+const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
     <Provider store={store}>

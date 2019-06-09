@@ -26,10 +26,6 @@ class Constants {
     public static SHOTGUN = 'Shotgun';
     public static RIFLE = 'Rifle';
     public static PISTOL = 'Pistol';
-
-    public static Mask_Icon = require('./assets/images/Mask_Icon.png');
-    public static Backpack_Icon = require('./assets/images/Backpack_Icon.png');
-    public static Chest_Icon = require('./assets/images/Chest_Icon.png');
 }
 
 export default Constants;

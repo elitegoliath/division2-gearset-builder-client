@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.scss';
-import { EquipmentItem } from '../../../models/equipment.model';
+import { EquipmentItem, eArmorType } from '../../../models/equipment.model';
 import { Image } from 'semantic-ui-react';
 
 interface iEquipmentCardLayout {
@@ -44,7 +44,7 @@ export const ArmorLayout = (_props: iEquipmentCardLayout) => {
             () => { openGearCustomizer() } 
         }>
             {/* { equipmentIcon(equipmentItem.icon) } */}
-            <Image src={ equipmentItem.icon } />
+            <Image src={ equipmentItem.iconURL } />
         </div>
     );
 };

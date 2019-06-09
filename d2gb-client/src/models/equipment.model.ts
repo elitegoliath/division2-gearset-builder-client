@@ -1,5 +1,4 @@
 import { Record } from 'immutable';
-import Constants from '../constants';
 
 export enum eArmorType {
     Mask,
@@ -40,13 +39,15 @@ export enum eEquipmentCategory {
 export type tEquipmentItem = {
     category?: number;
     type?: number;
-    icon?: any;
+    icon?: string;
+    iconURL?: string;
 }
 
-const DefaultEquipmentItem = Record({
+const DefaultEquipmentItem = Record<tEquipmentItem>({
     category: null,
     type: null,
     icon: null,
+    iconURL: ''
 }, 'Equipment Model');
 
 const setIcon = (_cat: eEquipmentCategory, _type: number): string => {
@@ -66,7 +67,7 @@ const setWeaponIcon = (_type: eWeaponType): string => {
 
 const setArmorIcon = (_type: eArmorType): string => {
     switch (_type) {
-        case eArmorType.Mask: return Constants.Mask_Icon;
+        case eArmorType.Mask: return 'Mask_Icon';
         case eArmorType.Backpack: return 'Backpack_Icon';
         case eArmorType.Chest: return 'Chest_Icon';
         case eArmorType.Gloves: return 'Gloves_Icon';

@@ -11,9 +11,7 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-const databaseRef = firebase.database().ref();
-const storageRef = firebase.storage().ref();
+firebase.firestore().settings({ timestampsInSnapshots: true });
 
-export const FirebaseRefs = {
-    icons: storageRef.child('images/icons'),
-}
+const databaseRef = firebase.firestore();
+const storageRef = firebase.storage().ref();

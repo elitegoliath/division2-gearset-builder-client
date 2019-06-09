@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { BuilderReducer, defaultBuilderState, iBuilderState } from './builder.reducer';
-import { iImageState, defaultImageState, ImageReducer } from './image.reducer';
+import { iImageState, defaultImageState, ImageReducer } from './images.reducer';
 
 
 export type iAppState = {
