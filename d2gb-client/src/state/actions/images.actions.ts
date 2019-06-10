@@ -25,8 +25,11 @@ export const fetchIconURLs = () => {
         (async () => {
             try {
                 const request = await getFirestore().collection('icon_urls').get();
-                // const iconUrlCollect = request.data();
-                console.log('Got icon URLs: ', request);
+                const iconUrlCollect: any[] = [];
+                request.forEach((_doc: any) => {
+                    iconUrlCollect.push(_doc.data());
+                });
+                console.log('Got icon URLs: ', iconUrlCollect);
                 // SUCCESS DISPATCH
             } catch (_e) {
                 console.log('Issues getting something from firestore.')
