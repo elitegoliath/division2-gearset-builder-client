@@ -1,6 +1,5 @@
 import React from 'react';
 import './index.scss';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { EquipmentCard } from '../../components/equipmentCard';
 import { iAppState } from '../../state/reducers';

@@ -5,12 +5,21 @@ import { App } from './App';
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './state/reducers';
-import 'why-did-you-update-redux';
+import { reduxFirestore, getFirestore } from 'redux-firestore';
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
+import firebaseConfig from './firebaseConfig';
 
-const store = createStore(reducers, applyMiddleware(thunk));
+
+const store = createStore(reducers,
+    compose(
+        applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+        reduxFirestore(firebaseConfig),
+        reactReduxFirebase(firebaseConfig, {}),
+    ),
+);
 
 ReactDOM.render(
     <Provider store={store}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.scss';
-import { EquipmentItem, eArmorType } from '../../../models/equipment.model';
+import { EquipmentItem } from '../../../models/equipment.model';
 import { Image } from 'semantic-ui-react';
 
 interface iEquipmentCardLayout {
