@@ -8,12 +8,13 @@ export type iImageURL = {
     url: string;
 }
 
-export const RECEIVE_IMAGE_URLS = PREFIX + 'RECEIVE_ICON_URLS';
+export const RECEIVE_ICON_URLS = PREFIX + 'RECEIVE_ICON_URLS';
 export const recieveIconURLs = (_iconURLs: List<iImageURL>): iReduxAction => ({
-    type: RECEIVE_IMAGE_URLS,
+    type: RECEIVE_ICON_URLS,
     payload: _iconURLs,
 });
 
+// TODO: Add strong typing.
 export const fetchIconURLs = () => {
     return (_dispatch: any, _getState: any, { getFirebase, getFirestore }: any): void => {
         // TODO: Add property ot state for whether icons have been loaded or are loading to prevent multiple calls.
@@ -24,15 +25,13 @@ export const fetchIconURLs = () => {
         (async () => {
             try {
                 const request = await getFirestore().collection('icon_urls').get();
-                const iconUrlCollect: any[] = [];
+                let iconUrlList: List<iImageURL> = List<iImageURL>();
                 request.forEach((_doc: any) => {
-                    iconUrlCollect.push(_doc.data());
+                    iconUrlList = iconUrlList.push(_doc.data());
                 });
-                console.log('Got icon URLs: ', iconUrlCollect);
 
                 // SUCCESS DISPATCH
-                const fakeList = List();
-                _dispatch(recieveIconURLs(fakeList));
+                _dispatch(recieveIconURLs(iconUrlList));
             } catch (_e) {
                 // ERROR DISPATCH
                 console.log('Issues getting something from firestore.')
