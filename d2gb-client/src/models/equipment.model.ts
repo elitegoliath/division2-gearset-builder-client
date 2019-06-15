@@ -1,4 +1,5 @@
 import { Record } from 'immutable';
+import Constants from '../constants';
 
 export enum eArmorType {
     Mask,
@@ -39,15 +40,13 @@ export enum eEquipmentCategory {
 export type tEquipmentItem = {
     category?: number;
     type?: number;
-    icon?: string;
     iconURL?: string;
 }
 
 const DefaultEquipmentItem = Record<tEquipmentItem>({
     category: null,
     type: null,
-    icon: null,
-    iconURL: ''
+    iconURL: Constants.ICON_GEAR_DEFAULT,
 }, 'Equipment Model');
 
 const setIcon = (_cat: eEquipmentCategory, _type: number): string => {
@@ -61,24 +60,25 @@ const setIcon = (_cat: eEquipmentCategory, _type: number): string => {
 
 const setWeaponIcon = (_type: eWeaponType): string => {
     switch (_type) {
-        default: return '';
+        default: return Constants.ICON_GEAR_DEFAULT;
     }
 };
 
 const setArmorIcon = (_type: eArmorType): string => {
     switch (_type) {
-        case eArmorType.Mask: return 'Mask_Icon';
-        case eArmorType.Backpack: return 'Backpack_Icon';
-        case eArmorType.Chest: return 'Chest_Icon';
-        case eArmorType.Gloves: return 'Gloves_Icon';
-        case eArmorType.Holster: return 'Holster_Icon';
-        case eArmorType.KneePads: return 'Kneepads_Icon';
+        case eArmorType.Mask: return Constants.ICON_GEAR_MASK;
+        case eArmorType.Backpack: return Constants.ICON_GEAR_BACKPACK;
+        case eArmorType.Chest: return Constants.ICON_GEAR_CHEST;
+        case eArmorType.Gloves: return Constants.ICON_GEAR_GLOVES;
+        case eArmorType.Holster: return Constants.ICON_GEAR_HOLSTER;
+        case eArmorType.KneePads: return Constants.ICON_GEAR_KNEEPADS;
+        default: return Constants.ICON_GEAR_DEFAULT;
     }
 };
 
 const setGadgetIcon = (_type: eGadgetType): string => {
     switch (_type) {
-        default: return 'Gadget_Icon';
+        default: return Constants.ICON_GEAR_DEFAULT;
     }
 };
 
@@ -86,8 +86,8 @@ export class EquipmentItem extends DefaultEquipmentItem implements tEquipmentIte
 
     constructor (_params?: tEquipmentItem) {
         if (_params) {
-            let icon = _params.icon || setIcon(_params.category, _params.type);
-            super({ ..._params, icon });
+            let iconURL = _params.iconURL || setIcon(_params.category, _params.type);
+            super({ ..._params, iconURL });
         } else {
             super();
         }

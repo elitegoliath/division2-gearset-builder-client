@@ -1,11 +1,15 @@
 import { iReduxAction } from '../actions';
 import { GearSet } from '../../models/gearSet.model';
+import * as Actions from '../actions/builder.actions';
+import { EquipmentItem } from '../../models/equipment.model';
 
 /**
  * Builder State interface.
  */
 export type iBuilderState = {
     gearSet: GearSet;
+    isEquipmentEditorOpen: boolean;
+    equipmentEditorModel: EquipmentItem;
 }
 
 /**
@@ -13,6 +17,8 @@ export type iBuilderState = {
  */
 export const defaultBuilderState: iBuilderState = {
     gearSet: new GearSet(),
+    isEquipmentEditorOpen: false,
+    equipmentEditorModel: null,
 }
 
 /**
@@ -28,7 +34,18 @@ const INITIAL_STATE: iBuilderState = defaultBuilderState;
  */
 export const BuilderReducer = (_state: iBuilderState = INITIAL_STATE, _action: iReduxAction): iBuilderState => {
     switch (_action.type) {
-        // case Actions.CHANGE_TRACKER: return {...state, ...action.payload};
+        case Actions.OPEN_EQUIPMENT_EDITOR: return {
+            ..._state,
+            isEquipmentEditorOpen: true,
+            equipmentEditorModel: _action.payload,
+        };
+
+        case Actions.CLOSE_EQUIPMENT_EDITOR: return {
+            ..._state,
+            isEquipmentEditorOpen: false,
+            equipmentEditorModel: null,
+        };
+
         default: return _state
     }
 }

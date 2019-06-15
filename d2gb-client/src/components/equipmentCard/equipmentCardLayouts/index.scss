@@ -1,4 +1,9 @@
-.equipment-card-layout-root {
-    width: 128px;
-    height: 78px;
+@import '../../../assets/global.scss';
+
+.equipment-card-layout {
+
+    &__gear-icon {
+        display: flex;
+        flex-direction: row-reverse;
+    }
 }

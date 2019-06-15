@@ -1,4 +1,5 @@
 import { iReduxAction } from '.';
+import { EquipmentItem } from '../../models/equipment.model';
 
 const PREFIX = 'BUILDER_';
 
@@ -8,3 +9,14 @@ const PREFIX = 'BUILDER_';
 //     type: CHANGE_TRACKER,
 //     payload: {numTracker},
 // });
+
+export const OPEN_EQUIPMENT_EDITOR = PREFIX + 'OPEN_EQUIPMENT_EDITOR';
+export const openEquipmentEditor = (_equipmentItem: EquipmentItem): iReduxAction => ({
+    type: OPEN_EQUIPMENT_EDITOR,
+    payload: _equipmentItem,
+});
+
+export const CLOSE_EQUIPMENT_EDITOR = PREFIX + 'CLOSE_EQUIPMENT_EDITOR';
+export const closeEquipmentEditor = (): iReduxAction => ({
+    type: CLOSE_EQUIPMENT_EDITOR,
+});

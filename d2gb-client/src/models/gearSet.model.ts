@@ -1,5 +1,5 @@
 import { Record } from 'immutable';
-import { EquipmentItem, eEquipmentCategory, eArmorType } from './equipment.model';
+import { EquipmentItem, eEquipmentCategory, eArmorType, eGadgetType } from './equipment.model';
 
 export type tGearSet = {
     primaryWeapon?: EquipmentItem;
@@ -20,11 +20,11 @@ const DefaultGearSet = Record<tGearSet>({
     secondaryWeapon: new EquipmentItem({ category: eEquipmentCategory.Weapon }),
     sidearm: new EquipmentItem({ category: eEquipmentCategory.Weapon }),
     mask: new EquipmentItem({ category: eEquipmentCategory.Armor, type: eArmorType.Mask }),
-    backpack: new EquipmentItem({ category: eEquipmentCategory.Armor }),
-    chest: new EquipmentItem({ category: eEquipmentCategory.Armor }),
-    gloves: new EquipmentItem({ category: eEquipmentCategory.Armor }),
-    holster: new EquipmentItem({ category: eEquipmentCategory.Armor }),
-    kneepads: new EquipmentItem({ category: eEquipmentCategory.Armor }),
+    backpack: new EquipmentItem({ category: eEquipmentCategory.Armor, type: eArmorType.Backpack }),
+    chest: new EquipmentItem({ category: eEquipmentCategory.Armor, type: eArmorType.Chest }),
+    gloves: new EquipmentItem({ category: eEquipmentCategory.Armor, type: eArmorType.Gloves }),
+    holster: new EquipmentItem({ category: eEquipmentCategory.Armor, type: eArmorType.Holster }),
+    kneepads: new EquipmentItem({ category: eEquipmentCategory.Armor, type: eArmorType.KneePads }),
     firstGadget: new EquipmentItem({ category: eEquipmentCategory.Gadget }),
     secondGadget: new EquipmentItem({ category: eEquipmentCategory.Gadget }),
 }, 'Gear Set Model');

@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { EquipmentCard } from '../../components/equipmentCard';
 import { iAppState } from '../../state/reducers';
 import { iBuilderState } from '../../state/reducers/builder.reducer';
-import { iImageURL, fetchIconURLs } from '../../state/actions/images.actions';
 import { GearSet } from '../../models/gearSet.model';
 import { iImageState } from '../../state/reducers/images.reducer';
-import { List } from 'immutable';
+import { EquipmentItem } from '../../models/equipment.model';
+import { OPEN_EQUIPMENT_EDITOR } from '../../state/actions/builder.actions';
 
 /**
  * Props interface for the Builder Page.
@@ -15,7 +15,7 @@ import { List } from 'immutable';
 export interface iBuilderPageProps {
     builderState?: iBuilderState;
     imageState?: iImageState;
-    getIconURLs?: any;
+    openEditor?: any;
 }
 
 /**
@@ -24,66 +24,60 @@ export interface iBuilderPageProps {
  */
 export const BuilderPage = (_props: iBuilderPageProps) => {
     const gearSet: GearSet = _props.builderState.gearSet;
-    const iconURLs: List<iImageURL> = _props.imageState.iconURLs;
-
-    if (!iconURLs) {
-        _props.getIconURLs();
-    }
 
     return (
         <div className='builder-page-root'>
             <div className='set-card__container'>
                 <div className='set-card__row'>
-                    <EquipmentCard equipmentItem={ gearSet.primaryWeapon }></EquipmentCard>
-                    <EquipmentCard equipmentItem={ gearSet.secondaryWeapon }></EquipmentCard>
-                    <EquipmentCard equipmentItem={ gearSet.sidearm }></EquipmentCard>
+                    {setEquipmentCard(gearSet.primaryWeapon, _props.openEditor)}
+                    {setEquipmentCard(gearSet.secondaryWeapon, _props.openEditor)}
+                    {setEquipmentCard(gearSet.sidearm, _props.openEditor)}
                 </div>
                 <div className='set-card__row'>
-                    <EquipmentCard equipmentItem={ gearSet.mask }></EquipmentCard>
-                    <EquipmentCard equipmentItem={ gearSet.backpack }></EquipmentCard>
+                    {setEquipmentCard(gearSet.mask, _props.openEditor)}
+                    {setEquipmentCard(gearSet.backpack, _props.openEditor)}
                 </div>
                 <div className='set-card__row'>
-                    <EquipmentCard equipmentItem={ gearSet.chest }></EquipmentCard>
-                    <EquipmentCard equipmentItem={ gearSet.gloves }></EquipmentCard>
+                    {setEquipmentCard(gearSet.chest, _props.openEditor)}
+                    {setEquipmentCard(gearSet.gloves, _props.openEditor)}
                 </div>
                 <div className='set-card__row'>
-                    <EquipmentCard equipmentItem={ gearSet.holster }></EquipmentCard>
-                    <EquipmentCard equipmentItem={ gearSet.kneepads }></EquipmentCard>
+                    {setEquipmentCard(gearSet.holster, _props.openEditor)}
+                    {setEquipmentCard(gearSet.kneepads, _props.openEditor)}
                 </div>
                 <div className='set-card__row'>
-                    <EquipmentCard equipmentItem={ gearSet.firstGadget }></EquipmentCard>
-                    <EquipmentCard equipmentItem={ gearSet.secondGadget }></EquipmentCard>
+                    {setEquipmentCard(gearSet.firstGadget, _props.openEditor)}
+                    {setEquipmentCard(gearSet.secondGadget, _props.openEditor)}
                 </div>
             </div>
         </div>
     );
 };
 
-// const setCardDefaults = (_set: GearSet, getImgFunc: any) => {
-//     console.log('Defaults being set.');
-//     // Check if images have been loaded.
-//     Object.entries(_set).forEach(_card => {
-//         const _cat = _card[0];
-//         const _item = _card[1];
-//         let newItem;
+const setEquipmentCard = (_item: EquipmentItem, _dispatchFunc: any) => {
+    const handleClick = () => {
+        _dispatchFunc(_item);
+    }
 
-        
-//     });
-// };
+    return (
+        <div onClick={ handleClick }>
+            <EquipmentCard equipmentItem={ _item } />
+        </div>
+    );
+}
 
 /**
  * Connect state to props.
  */
 const mapStateToProps = (_state: iAppState) => ({
         builderState: _state.builderState,
-        imageState: _state.imageState,
     });
 
 /**
  * Map dispatchers to props.
  */
 const mapDispatchToProps = (_dispatch: any) => ({
-    getIconURLs: () => _dispatch(fetchIconURLs()),
+    openEditor: (_item: EquipmentItem) => _dispatch({ type: OPEN_EQUIPMENT_EDITOR, payload: _item })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BuilderPage);

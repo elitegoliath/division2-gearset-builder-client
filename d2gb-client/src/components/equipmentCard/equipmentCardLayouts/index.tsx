@@ -7,32 +7,16 @@ interface iEquipmentCardLayout {
     equipmentItem: EquipmentItem;
 }
 
-// const iconList = {
-//     Mask_Icon: require('../../../assets/images/Mask_Icon.png'),
-// };
-
-const openGearCustomizer = () => {
-    console.log('Item Clicked');
-};
-
-// const equipmentIcon = (_imgURL: string) => {
-//     console.log('URL', _imgURL);
-//     if (_imgURL) {
-//         return (
-//             <div>
-//                 <Image src={ iconList.Mask_Icon } size='tiny' />
-//             </div>
-//         );
-//     }
-
-//     return (<Image src={ iconList.Mask_Icon } size='tiny' />);
-// };
-
 export const WeaponLayout = (_props: iEquipmentCardLayout) => {
-    // const { equipmentItem } = _props;
+    const { equipmentItem } = _props;
 
     return (
-        <div className='equipment-card-layout-root'>Weapon</div>
+        <div className='equipment-card-layout'>
+
+            <div className='equipment-card-layout__gear-icon'>
+                <Image src={equipmentItem.iconURL} size='tiny' verticalAlign='middle' />
+            </div>
+        </div>
     );
 };
 
@@ -40,19 +24,24 @@ export const ArmorLayout = (_props: iEquipmentCardLayout) => {
     const { equipmentItem } = _props;
 
     return (
-        <div className='equipment-card-layout-root' onClick={ 
-            () => { openGearCustomizer() } 
-        }>
-            {/* { equipmentIcon(equipmentItem.icon) } */}
-            <Image src={ equipmentItem.iconURL } />
+        <div className='equipment-card-layout'>
+
+            <div className='equipment-card-layout__gear-icon'>
+                <Image src={equipmentItem.iconURL} size='tiny' verticalAlign='middle' />
+            </div>
         </div>
     );
 };
 
 export const GadgetLayout = (_props: iEquipmentCardLayout) => {
-    // const { equipmentItem } = _props;
+    const { equipmentItem } = _props;
 
     return (
-        <div className='equipment-card-layout-root'>Gadget</div>
+        <div className='equipment-card-layout'>
+
+            <div className='equipment-card-layout__gear-icon'>
+                <Image src={equipmentItem.iconURL} size='tiny' />
+            </div>
+        </div>
     );
 };

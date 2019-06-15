@@ -1,7 +1,43 @@
 @import '../../assets/global.scss';
 
-.equipment-card-root {
-    background-color: rgba(255, 235, 15, 0.4);
+.equipment-card {
+    position: relative;
+    border: 2px solid rgba(255, 214, 0, 0.1);
     border-radius: $borderRadius;
     margin: $marginNormal;
+    width: 200px;
+    height: 100px;
+    overflow: hidden;
+
+    &__wrapper {
+        background: linear-gradient(90deg, rgba(255, 214, 0, 0.37) 0%, rgba(255, 214, 0, 0.14) 46.04%, rgba(255, 214, 0, 0) 100%);
+        border-radius: $borderRadius;
+        padding: $paddingNormal;
+        height: 100%;
+    }
+
+    &__left-bar {
+        position: absolute;
+        background-color: $secondary;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 6px;
+    }
+
+    img {
+        user-select: none;
+    }
+}
+
+.equipment-card:hover {
+    .equipment-card__wrapper {
+        background: linear-gradient(90deg, rgba(255, 213, 0, 0.438) 0%, rgba(255, 213, 0, 0.295) 46.04%, rgba(255, 213, 0, 0.151) 100%);
+    }
+}
+
+.equipment-card:active {
+    .equipment-card__wrapper {
+        background: linear-gradient(90deg, rgba(134, 112, 0, 0.438) 0%, rgba(85, 71, 0, 0.295) 46.04%, rgba(85, 71, 0, 0.151) 100%);
+    }
 }
