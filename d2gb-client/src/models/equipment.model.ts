@@ -1,24 +1,24 @@
 import { Record } from 'immutable';
 import Constants from '../constants';
 
-export enum eArmorType {
-    Mask,
-    Backpack,
-    Chest,
-    Gloves,
-    Holster,
-    KneePads,
-}
+// export enum eArmorType {
+//     Mask,
+//     Backpack,
+//     Chest,
+//     Gloves,
+//     Holster,
+//     KneePads,
+// }
 
-export enum eWeaponType {
-    AssaultRifle,
-    MarksmanRifle,
-    LightMachineGun,
-    SubMachineGun,
-    Shotgun,
-    Rifle,
-    Pistol,
-}
+// export enum eWeaponType {
+//     AssaultRifle,
+//     MarksmanRifle,
+//     LightMachineGun,
+//     SubMachineGun,
+//     Shotgun,
+//     Rifle,
+//     Pistol,
+// }
 
 export enum eGadgetType {
     Pulse,
@@ -31,11 +31,11 @@ export enum eGadgetType {
     Shield,
 }
 
-export enum eEquipmentCategory {
-    Weapon,
-    Armor,
-    Gadget,
-}
+// export enum eEquipmentCategory {
+//     Weapon,
+//     Armor,
+//     Gadget,
+// }
 
 export type tEquipmentItem = {
     category?: number;

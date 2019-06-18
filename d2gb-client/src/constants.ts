@@ -1,32 +1,67 @@
+export enum eWeaponModel {
+    Sig_716_CQB = 'Sig 716 CQB',
+}
+
+export enum eArmorModel {
+    Lomond_Medium_Breather = '"Lomond" Medium Breather',
+}
+
+export enum eWeaponType {
+    Rifle,
+}
+
+export enum eArmorType {
+    Mask,
+    Backpack,
+    Chest,
+    Gloves,
+    Holster,
+    KneePads,
+}
+
+export enum eAttributeType {
+    Offense,
+    Defense,
+    Utility,
+}
+
+export enum eArmorModSlotType {
+    System,
+    Protocol,
+}
+
+export type tPerk = {
+    description?: string;
+    modifier?: tModifier;
+};
+
+export type tModifier = {
+    stat?: string; // TODO: Make stats into an enum.
+    amountPercent?: number;
+    amountAbsolute?: number;
+};
+
+export type tBrand = {
+    name?: string;
+    iconURL?: string;
+    firstModifier?: tModifier;
+    secondModifier?: tModifier;
+    thirdModifier?: tModifier;
+};
+
+export type tAttribute = {
+    type?: eAttributeType;
+    iconURL?: string;
+    modifier?: tModifier;
+}
+
+export type tRequirement = {
+    lessThan?: boolean;
+    amount?: number;
+    attribute?: tAttribute;
+};
+
 class Constants {
-    public static WEAPON = 'Weapon';
-    public static ARMOR = 'Armor';
-    public static GADGET = 'Gadget';
-
-    public static MASK = 'Mask';
-    public static BACKPACK = 'Backpack';
-    public static CHEST = 'Chest';
-    public static GLOVES = 'Gloves';
-    public static HOLSTER = 'Holster';
-    public static KNEE_PADS = 'Knee Pads';
-
-    public static PULSE = 'Pulse';
-    public static TURRET = 'Turret';
-    public static HIVE = 'Hive';
-    public static CHEM_LAUNCHER = 'Chem Launcher';
-    public static FIREFLY = 'Firefly';
-    public static SEEKER_MINE = 'Seeker Mine';
-    public static DRONE = 'Drone';
-    public static SHIELD = 'Shield';
-
-    public static ASSAULT_RIFLE = 'Assault Rifle';
-    public static MARKSMAN_RIFLE = 'Marksman Rifle';
-    public static LIGHT_MACHINE_GUN = 'Light Machine Gun';
-    public static SUB_MACHINE_GUN = 'Sub Machine Gun';
-    public static SHOTGUN = 'Shotgun';
-    public static RIFLE = 'Rifle';
-    public static PISTOL = 'Pistol';
-
     public static ICON_GEAR_DEFAULT = require('./assets/images/Default_Gear_Icon.png');
     public static ICON_GEAR_BACKPACK = 'https://firebasestorage.googleapis.com/v0/b/division2-gearset-builder.appspot.com/o/images%2Ficons%2FBackpack_Icon.png?alt=media&token=4acfe98f-b739-45eb-b328-01b6f280c115';
     public static ICON_GEAR_CHEST = 'https://firebasestorage.googleapis.com/v0/b/division2-gearset-builder.appspot.com/o/images%2Ficons%2FChest_Icon.png?alt=media&token=b7a0a0c9-ae91-467e-8905-9c5c1942a7ba';

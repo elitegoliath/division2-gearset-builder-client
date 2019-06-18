@@ -1,5 +1,5 @@
 import { Record } from 'immutable';
-import { EquipmentItem, eEquipmentCategory, eArmorType, eGadgetType } from './equipment.model';
+import { EquipmentItem } from './equipment.model';
 
 export type tGearSet = {
     primaryWeapon?: EquipmentItem;
@@ -13,6 +13,7 @@ export type tGearSet = {
     kneepads?: EquipmentItem;
     firstGadget?: EquipmentItem;
     secondGadget?: EquipmentItem;
+    // setStats?: TODO: Make a stats model.
 };
 
 const DefaultGearSet = Record<tGearSet>({
