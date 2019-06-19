@@ -6,6 +6,10 @@ export enum eArmorModel {
     Lomond_Medium_Breather = '"Lomond" Medium Breather',
 }
 
+export enum eGadgetModel {
+    
+}
+
 export enum eWeaponType {
     Rifle,
 }
@@ -17,6 +21,17 @@ export enum eArmorType {
     Gloves,
     Holster,
     KneePads,
+}
+
+export enum eGadgetType {
+    Pulse,
+    Turret,
+    Hive,
+    ChemLauncher,
+    Firefly,
+    SeekerMine,
+    Drone,
+    Shield,
 }
 
 export enum eAttributeType {

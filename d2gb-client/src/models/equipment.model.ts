@@ -20,16 +20,16 @@ import Constants from '../constants';
 //     Pistol,
 // }
 
-export enum eGadgetType {
-    Pulse,
-    Turret,
-    Hive,
-    ChemLauncher,
-    Firefly,
-    SeekerMine,
-    Drone,
-    Shield,
-}
+// export enum eGadgetType {
+//     Pulse,
+//     Turret,
+//     Hive,
+//     ChemLauncher,
+//     Firefly,
+//     SeekerMine,
+//     Drone,
+//     Shield,
+// }
 
 // export enum eEquipmentCategory {
 //     Weapon,

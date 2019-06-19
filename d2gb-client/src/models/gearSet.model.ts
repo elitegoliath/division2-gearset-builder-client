@@ -1,33 +1,36 @@
 import { Record } from 'immutable';
 import { EquipmentItem } from './equipment.model';
+import { Weapon } from './weapon.model';
+import { Armor } from './armor.model';
+import { Gadget } from './gadget.model';
 
 export type tGearSet = {
-    primaryWeapon?: EquipmentItem;
-    secondaryWeapon?: EquipmentItem;
-    sidearm?: EquipmentItem;
-    mask?: EquipmentItem;
-    backpack?: EquipmentItem;
-    chest?: EquipmentItem;
-    gloves?: EquipmentItem;
-    holster?: EquipmentItem;
-    kneepads?: EquipmentItem;
-    firstGadget?: EquipmentItem;
-    secondGadget?: EquipmentItem;
+    primaryWeapon?: Weapon;
+    secondaryWeapon?: Weapon;
+    sidearm?: Weapon;
+    mask?: Armor;
+    backpack?: Armor;
+    chest?: Armor;
+    gloves?: Armor;
+    holster?: Armor;
+    kneepads?: Armor;
+    firstGadget?: Gadget;
+    secondGadget?: Gadget;
     // setStats?: TODO: Make a stats model.
 };
 
 const DefaultGearSet = Record<tGearSet>({
-    primaryWeapon: new EquipmentItem({ category: eEquipmentCategory.Weapon }),
-    secondaryWeapon: new EquipmentItem({ category: eEquipmentCategory.Weapon }),
-    sidearm: new EquipmentItem({ category: eEquipmentCategory.Weapon }),
-    mask: new EquipmentItem({ category: eEquipmentCategory.Armor, type: eArmorType.Mask }),
-    backpack: new EquipmentItem({ category: eEquipmentCategory.Armor, type: eArmorType.Backpack }),
-    chest: new EquipmentItem({ category: eEquipmentCategory.Armor, type: eArmorType.Chest }),
-    gloves: new EquipmentItem({ category: eEquipmentCategory.Armor, type: eArmorType.Gloves }),
-    holster: new EquipmentItem({ category: eEquipmentCategory.Armor, type: eArmorType.Holster }),
-    kneepads: new EquipmentItem({ category: eEquipmentCategory.Armor, type: eArmorType.KneePads }),
-    firstGadget: new EquipmentItem({ category: eEquipmentCategory.Gadget }),
-    secondGadget: new EquipmentItem({ category: eEquipmentCategory.Gadget }),
+    primaryWeapon: new Weapon(),
+    secondaryWeapon: new Weapon(),
+    sidearm: new Weapon(),
+    mask: new Armor(),
+    backpack: new Armor(),
+    chest: new Armor(),
+    gloves: new Armor(),
+    holster: new Armor(),
+    kneepads: new Armor(),
+    firstGadget: new Gadget(),
+    secondGadget: new Gadget(),
 }, 'Gear Set Model');
 
 export class GearSet extends DefaultGearSet implements tGearSet {
