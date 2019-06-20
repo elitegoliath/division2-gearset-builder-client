@@ -1,7 +1,7 @@
 import { iReduxAction } from '../actions';
 import { GearSet } from '../../models/gearSet.model';
 import * as Actions from '../actions/builder.actions';
-import { EquipmentItem } from '../../models/equipment.model';
+import { tEquipmentItem } from '../../constants';
 
 /**
  * Builder State interface.
@@ -9,7 +9,7 @@ import { EquipmentItem } from '../../models/equipment.model';
 export type iBuilderState = {
     gearSet: GearSet;
     isEquipmentEditorOpen: boolean;
-    equipmentEditorModel: EquipmentItem;
+    equipmentEditorModel: tEquipmentItem;
 }
 
 /**

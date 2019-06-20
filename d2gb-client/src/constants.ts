@@ -1,3 +1,9 @@
+export enum eEquipmentCategory {
+    Weapon,
+    Armor,
+    Gadget,
+}
+
 export enum eWeaponModel {
     Sig_716_CQB = 'Sig 716 CQB',
 }
@@ -43,6 +49,11 @@ export enum eAttributeType {
 export enum eArmorModSlotType {
     System,
     Protocol,
+}
+
+export type tEquipmentItem = {
+    category?: eEquipmentCategory;
+    iconURL?: string;
 }
 
 export type tPerk = {

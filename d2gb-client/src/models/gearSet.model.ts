@@ -1,5 +1,4 @@
 import { Record } from 'immutable';
-import { EquipmentItem } from './equipment.model';
 import { Weapon } from './weapon.model';
 import { Armor } from './armor.model';
 import { Gadget } from './gadget.model';

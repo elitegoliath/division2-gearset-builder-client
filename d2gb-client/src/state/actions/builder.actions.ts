@@ -1,5 +1,5 @@
 import { iReduxAction } from '.';
-import { EquipmentItem } from '../../models/equipment.model';
+import { tEquipmentItem } from '../../constants';
 
 const PREFIX = 'BUILDER_';
 
@@ -11,7 +11,7 @@ const PREFIX = 'BUILDER_';
 // });
 
 export const OPEN_EQUIPMENT_EDITOR = PREFIX + 'OPEN_EQUIPMENT_EDITOR';
-export const openEquipmentEditor = (_equipmentItem: EquipmentItem): iReduxAction => ({
+export const openEquipmentEditor = (_equipmentItem: tEquipmentItem): iReduxAction => ({
     type: OPEN_EQUIPMENT_EDITOR,
     payload: _equipmentItem,
 });

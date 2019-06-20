@@ -3,13 +3,16 @@ import './index.scss';
 import { Modal } from 'semantic-ui-react';
 import { iAppState } from '../../state/reducers';
 import { connect } from 'react-redux';
-import { EquipmentItem, eEquipmentCategory } from '../../models/equipment.model';
 import { CLOSE_EQUIPMENT_EDITOR } from '../../state/actions/builder.actions';
+import { Armor } from '../../models/armor.model';
+import { Weapon } from '../../models/weapon.model';
+import { Gadget } from '../../models/gadget.model';
+import { tEquipmentItem, eEquipmentCategory } from '../../constants';
 
 export interface iEquipmentEditor {
     isOpen?: boolean;
-    model?: EquipmentItem;
     closeEditor?: any;
+    model?: tEquipmentItem;
 }
 
 export const EquipmentEditor = (_props: iEquipmentEditor) => {
@@ -22,13 +25,30 @@ export const EquipmentEditor = (_props: iEquipmentEditor) => {
     return (
         <Modal open={isOpen} onClose={handleClose}>
             <Modal.Content>
-                <div className='equipment-editor'>
-                    {model ? eEquipmentCategory[model.category] : 'No Model'}
-                </div>
+                {() => {
+                    switch (model.category) {
+                        case eEquipmentCategory.Weapon: return weaponEditor(model as Weapon);
+                        case eEquipmentCategory.Armor: return armorEditor(model as Armor);
+                        case eEquipmentCategory.Gadget: return gadgetEditor(model as Gadget);
+                        default: return <div>Sumthin is jacked here...</div>
+                    }
+                }}
             </Modal.Content>
         </Modal>
     );
 };
+
+const weaponEditor = (_model: Weapon) => {
+    return (<div>Editing Weapon</div>);
+}
+
+const armorEditor = (_model: Armor) => {
+    return (<div>Editing Armor</div>);
+}
+
+const gadgetEditor = (_model: Gadget) => {
+    return (<div>Editing Gadget</div>);
+}
 
 /**
  * Connect state to props.
