@@ -2,8 +2,8 @@ import { Record, List } from 'immutable'
 import { eWeaponModel, tModifier, tRequirement, eArmorModel } from '../constants'
 
 export type tTalent = {
-    compatibleWeaponModels?: List<eWeaponModel>
-    compatibleArmorModels?: List<eArmorModel>
+    // compatibleWeaponModels?: List<eWeaponModel>
+    // compatibleArmorModels?: List<eArmorModel>
     name?: string
     iconURL?: string
     modSymbolURL?: string

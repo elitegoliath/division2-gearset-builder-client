@@ -5,7 +5,6 @@ import { Weapon } from '../../models/weapon.model';
 import { eWeaponType } from '../../constants';
 
 export const AdminPage = () => {
-
     return (
         <div className='admin-page'>
             <div className='admin-page__data-input-buttons'>
@@ -13,25 +12,25 @@ export const AdminPage = () => {
                     {weaponModal()}
                 </div>
 
-                <div className='admin-page__button'>
+                {/* <div className='admin-page__button'>
                     <Button size='mini'>Weapon Mod Modal</Button>
-                </div>
+                </div> */}
 
                 <div className='admin-page__button'>
                     <Button size='mini'>Armor Modal</Button>
                 </div>
 
-                <div className='admin-page__button'>
+                {/* <div className='admin-page__button'>
                     <Button size='mini'>Armor Mod Modal</Button>
-                </div>
+                </div> */}
 
                 <div className='admin-page__button'>
                     <Button size='mini'>Gadget Modal</Button>
                 </div>
 
-                <div className='admin-page__button'>
+                {/* <div className='admin-page__button'>
                     <Button size='mini'>Gadget Mod Modal</Button>
-                </div>
+                </div> */}
             </div>
         </div>
     )

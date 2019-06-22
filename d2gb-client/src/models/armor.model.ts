@@ -1,16 +1,19 @@
 import { Record, List } from 'immutable'
-import Constants, { eArmorType, tBrand, tAttribute, eEquipmentCategory } from '../constants'
+import Constants, { eArmorType, tBrand, tAttribute, eEquipmentCategory, eArmorModSlotType } from '../constants'
 import { Talent } from './talent.model'
 import { ArmorMod } from './armorMod.model'
 
 export type tArmor = {
     model?: string
     type?: eArmorType
-    description?: string
+    baseArmor?: number
     brand?: tBrand
-    attributes?: List<tAttribute>
-    talents?: List<Talent>
-    mods?: List<ArmorMod>
+    attributeLimit?: number
+    possibleAttributes?: List<tAttribute>
+    talentLimit?: number
+    possibleTalents?: List<Talent>
+    modSlotLimit?: number
+    possibleModSlotTypes?: List<eArmorModSlotType>
     iconURL?: string
     readonly category?: eEquipmentCategory
 };

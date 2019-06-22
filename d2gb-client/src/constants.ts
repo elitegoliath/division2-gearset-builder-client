@@ -1,11 +1,7 @@
 export enum eEquipmentCategory {
-    Weapon,
-    Armor,
-    Gadget,
-}
-
-export enum eWeaponModel {
-    Sig_716_CQB = 'Sig 716 CQB',
+    Weapon,  // 0
+    Armor,   // 1
+    Gadget,  // 2
 }
 
 export enum eArmorModel {
@@ -47,8 +43,17 @@ export enum eAttributeType {
 }
 
 export enum eArmorModSlotType {
-    System,
-    Protocol,
+    System,   // 0
+    Protocol, // 1
+}
+
+export enum eStatType {
+    Accuracy,          // 0
+    CriticalHitDamage, // 1
+    CriticalHitChance, // 2
+    CooldownReduction, // 3
+    Health,            // 4
+    ArmorRegeneration, // 5
 }
 
 export type tPerk = {
@@ -57,7 +62,7 @@ export type tPerk = {
 };
 
 export type tModifier = {
-    stat?: string; // TODO: Make stats into an enum.
+    stat?: eStatType;
     amountPercent?: number;
     amountAbsolute?: number;
 };
