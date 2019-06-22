@@ -1,15 +1,17 @@
-import { iReduxAction } from '../actions';
-import { GearSet } from '../../models/gearSet.model';
-import * as Actions from '../actions/builder.actions';
-import { tEquipmentItem } from '../../constants';
+import { iReduxAction } from '../actions'
+import { GearSet } from '../../models/gearSet.model'
+import * as Actions from '../actions/builder.actions'
+import { Armor } from '../../models/armor.model'
+import { Weapon } from '../../models/weapon.model'
+import { Gadget } from '../../models/gadget.model'
 
 /**
  * Builder State interface.
  */
 export type iBuilderState = {
-    gearSet: GearSet;
-    isEquipmentEditorOpen: boolean;
-    equipmentEditorModel: tEquipmentItem;
+    gearSet: GearSet
+    isEquipmentEditorOpen: boolean
+    equipmentEditorModel: Armor | Weapon | Gadget
 }
 
 /**
@@ -24,7 +26,7 @@ export const defaultBuilderState: iBuilderState = {
 /**
  * Define the initial state as the default state.
  */
-const INITIAL_STATE: iBuilderState = defaultBuilderState;
+const INITIAL_STATE: iBuilderState = defaultBuilderState
 
 /**
  * Initialize the reducer.
@@ -38,13 +40,13 @@ export const BuilderReducer = (_state: iBuilderState = INITIAL_STATE, _action: i
             ..._state,
             isEquipmentEditorOpen: true,
             equipmentEditorModel: _action.payload,
-        };
+        }
 
         case Actions.CLOSE_EQUIPMENT_EDITOR: return {
             ..._state,
             isEquipmentEditorOpen: false,
             equipmentEditorModel: null,
-        };
+        }
 
         default: return _state
     }

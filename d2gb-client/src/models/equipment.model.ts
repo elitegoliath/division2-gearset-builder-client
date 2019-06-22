@@ -1,5 +1,5 @@
-import { Record } from 'immutable';
-import Constants from '../constants';
+import { Record } from 'immutable'
+import Constants from '../constants'
 
 // export enum eArmorType {
 //     Mask,

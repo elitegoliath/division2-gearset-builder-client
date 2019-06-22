@@ -1,17 +1,12 @@
-import { iReduxAction } from '.';
-import { tEquipmentItem } from '../../constants';
+import { iReduxAction } from '.'
+import { Armor } from '../../models/armor.model'
+import { Weapon } from '../../models/weapon.model'
+import { Gadget } from '../../models/gadget.model'
 
-const PREFIX = 'BUILDER_';
-
-// export const CHANGE_TRACKER = PREFIX + 'CHANGE_TRACKER';
-
-// export const changeNumTracker = (numTracker: number): iReduxAction => ({
-//     type: CHANGE_TRACKER,
-//     payload: {numTracker},
-// });
+const PREFIX = 'BUILDER_'
 
 export const OPEN_EQUIPMENT_EDITOR = PREFIX + 'OPEN_EQUIPMENT_EDITOR';
-export const openEquipmentEditor = (_equipmentItem: tEquipmentItem): iReduxAction => ({
+export const openEquipmentEditor = (_equipmentItem: Armor | Weapon | Gadget): iReduxAction => ({
     type: OPEN_EQUIPMENT_EDITOR,
     payload: _equipmentItem,
 });

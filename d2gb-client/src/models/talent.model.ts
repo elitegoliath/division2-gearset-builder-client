@@ -1,20 +1,20 @@
-import { Record, List } from 'immutable';
-import { eWeaponModel, tModifier, tRequirement, eArmorModel } from '../constants';
+import { Record, List } from 'immutable'
+import { eWeaponModel, tModifier, tRequirement, eArmorModel } from '../constants'
 
 export type tTalent = {
-    compatibleWeaponModels?: List<eWeaponModel>;
-    compatibleArmorModels?: List<eArmorModel>;
-    name?: string;
-    iconURL?: string;
-    modSymbolURL?: string;
-    description?: string;
-    modifiers?: List<tModifier>;
-    requirements?: tRequirement;
+    compatibleWeaponModels?: List<eWeaponModel>
+    compatibleArmorModels?: List<eArmorModel>
+    name?: string
+    iconURL?: string
+    modSymbolURL?: string
+    description?: string
+    modifiers?: List<tModifier>
+    requirements?: tRequirement
 };
 
 const DefaultTalent = Record<tTalent>({
 
-}, 'Talent Model');
+}, 'Talent Model')
 
 export class Talent extends DefaultTalent implements tTalent {
     

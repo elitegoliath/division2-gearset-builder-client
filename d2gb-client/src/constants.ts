@@ -51,11 +51,6 @@ export enum eArmorModSlotType {
     Protocol,
 }
 
-export type tEquipmentItem = {
-    category?: eEquipmentCategory;
-    iconURL?: string;
-}
-
 export type tPerk = {
     description?: string;
     modifier?: tModifier;
