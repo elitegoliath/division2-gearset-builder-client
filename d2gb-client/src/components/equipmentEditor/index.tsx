@@ -34,7 +34,7 @@ export const EquipmentEditor = (_props: iEquipmentEditor) => {
     return (
         <Modal open={isOpen} onClose={handleClose}>
             <Modal.Content>
-                {model ? renderCategory(model) : <div></div>}
+                {model && isOpen ? renderCategory(model) : <div></div>}
             </Modal.Content>
         </Modal>
     )

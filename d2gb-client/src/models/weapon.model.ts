@@ -22,6 +22,8 @@ export type tWeapon = {
 const DefaultWeapon = Record<tWeapon>({
     category: eEquipmentCategory.Weapon,
     iconURL: Constants.ICON_GEAR_DEFAULT,
+    model: null,
+    type: null,
 }, 'Weapon Model');
 
 export class Weapon extends DefaultWeapon implements tWeapon {

@@ -1,0 +1,14 @@
+.admin-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &__data-input-buttons {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__button {
+        margin-bottom: 8px;
+    }
+}
