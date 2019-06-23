@@ -1,13 +1,13 @@
-import { combineReducers } from 'redux';
-import { BuilderReducer, defaultBuilderState, iBuilderState } from './builder.reducer';
-import { iImageState, defaultImageState, ImageReducer } from './images.reducer';
-import { firestoreReducer } from 'redux-firestore';
+import { combineReducers } from 'redux'
+import { BuilderReducer, defaultBuilderState, iBuilderState } from './builder.reducer'
+import { iImageState, defaultImageState, ImageReducer } from './images.reducer'
+import { firestoreReducer } from 'redux-firestore'
 
 
 export type iAppState = {
-    builderState: iBuilderState;
-    imageState: iImageState;
-    firestore: any;
+    builderState: iBuilderState
+    imageState: iImageState
+    firestore: any
 }
 
 /**
@@ -26,4 +26,4 @@ export default combineReducers({
     builderState: BuilderReducer,
     imageState: ImageReducer,
     firestore: firestoreReducer,
-});
+})

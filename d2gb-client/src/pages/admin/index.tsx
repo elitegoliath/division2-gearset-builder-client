@@ -3,6 +3,7 @@ import './index.scss'
 import { Button, Modal, Form, Segment, FormGroup } from 'semantic-ui-react';
 import { Weapon } from '../../models/weapon.model';
 import { eWeaponType } from '../../constants';
+import ArmorModal from './components/armorModal';
 
 export const AdminPage = () => {
     return (
@@ -17,7 +18,7 @@ export const AdminPage = () => {
                 </div> */}
 
                 <div className='admin-page__button'>
-                    <Button size='mini'>Armor Modal</Button>
+                    <ArmorModal />
                 </div>
 
                 {/* <div className='admin-page__button'>

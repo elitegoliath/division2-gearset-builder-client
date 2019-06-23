@@ -101,14 +101,14 @@ const setGadgetCard = (_gadget: Gadget, _dispatchFunc: any) => {
  * Connect state to props.
  */
 const mapStateToProps = (_state: iAppState) => ({
-        builderState: _state.builderState,
-    });
+    builderState: _state.builderState,
+})
 
 /**
  * Map dispatchers to props.
  */
 const mapDispatchToProps = (_dispatch: any) => ({
     openEditor: (_item: Armor | Weapon | Gadget) => _dispatch({ type: OPEN_EQUIPMENT_EDITOR, payload: _item })
-});
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(BuilderPage);
+export default connect(mapStateToProps, mapDispatchToProps)(BuilderPage)
