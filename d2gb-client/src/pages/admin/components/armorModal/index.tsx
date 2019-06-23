@@ -14,7 +14,9 @@ interface iArmorModal {
 
 export const ArmorModal = (_props: iArmorModal) => {
     let { armorList } = _props
+    const armorNameList: string[] = [];
     let isOpen: boolean = false;
+    // let addingNew: boolean = false;
 
     const typeOptions: { key: number, text: string, value: number }[] = [
         { key: eArmorType.Mask, text: eArmorType[eArmorType.Mask], value: eArmorType.Mask },
@@ -28,6 +30,8 @@ export const ArmorModal = (_props: iArmorModal) => {
         isOpen = true
         if (!armorList) {
             armorList = _props.fetchArmor()
+        } else {
+            armorList.forEach(_a => {armorNameList.push(_a.model)}) // TODO: Add this list to the state?
         }
     }
 
@@ -42,6 +46,14 @@ export const ArmorModal = (_props: iArmorModal) => {
             trigger={<Button size='mini' onClick={handleOpen}>Armor Modal</Button>}>
             <Modal.Content>
                 {isOpen ? <Form inverted onSubmit={handleSubmit}>
+                    <FormGroup widths='equal'>
+                        <Form.Select options={armorList}></Form.Select>
+                        <Form>
+                            <Form.Input placeholder='Armor Model...' name='model' label='Armor Model' />
+                            <Form.Select placeholder='Armor Type...' name='type' options={typeOptions} label='Armor Type' />
+                            <Button>Add</Button>
+                        </Form>
+                    </FormGroup>
                     <FormGroup widths='equal'>
                         <Form.Input placeholder='Armor Model...' name='model' label='Armor Model' />
                         <Form.Select placeholder='Armor Type...' name='type' options={typeOptions} label='Armor Type' />
