@@ -1,22 +1,27 @@
 import React from 'react'
 import { Modal, Button, Form, FormGroup } from 'semantic-ui-react'
-import { eArmorType } from '../../../../constants'
+import { eArmorType, tFormSelectItem } from '../../../../constants'
 import { iAppState } from '../../../../state/reducers'
 import { fetchArmorList } from '../../../../state/actions/armor.actions'
 import { connect } from 'react-redux'
 import { List } from 'immutable'
 import { Armor } from '../../../../models/armor.model'
+import { iArmorState } from '../../../../state/reducers/armor.reducer';
 
 interface iArmorModal {
     armorList?: List<Armor>
+    armorNameList?: List<tFormSelectItem>
+    // armorState?: iArmorState
     fetchArmor?: any
 }
 
 export const ArmorModal = (_props: iArmorModal) => {
-    let { armorList } = _props
-    const armorNameList: string[] = [];
-    let isOpen: boolean = false;
+    let { armorList, armorNameList, fetchArmor } = _props
+    let isOpen: boolean = false; // TODO: Handle this inside of redux.
+
     // let addingNew: boolean = false;
+
+    // console.log(armorNameList.toJS());
 
     const typeOptions: { key: number, text: string, value: number }[] = [
         { key: eArmorType.Mask, text: eArmorType[eArmorType.Mask], value: eArmorType.Mask },
@@ -28,16 +33,16 @@ export const ArmorModal = (_props: iArmorModal) => {
 
     const handleOpen = () => {
         isOpen = true
-        if (!armorList) {
-            armorList = _props.fetchArmor()
-        } else {
-            armorList.forEach(_a => {armorNameList.push(_a.model)}) // TODO: Add this list to the state?
+        if (!armorList.size) {
+            armorList = fetchArmor()
         }
     }
 
     const handleClose = () => {
         isOpen = false
     }
+
+    console.log(isOpen)
 
     return (
         <Modal
@@ -47,7 +52,7 @@ export const ArmorModal = (_props: iArmorModal) => {
             <Modal.Content>
                 {isOpen ? <Form inverted onSubmit={handleSubmit}>
                     <FormGroup widths='equal'>
-                        <Form.Select options={armorList}></Form.Select>
+                        <Form.Select options={armorNameList.toJS()}></Form.Select>
                         <Form>
                             <Form.Input placeholder='Armor Model...' name='model' label='Armor Model' />
                             <Form.Select placeholder='Armor Type...' name='type' options={typeOptions} label='Armor Type' />
@@ -67,15 +72,16 @@ export const ArmorModal = (_props: iArmorModal) => {
 /**
  * Connect state to props.
  */
-const mapStateToProps = (_state: iAppState) => ({
-    armorList: _state.armorState.armorList
-})
+// const mapStateToProps = (_state: iAppState) => ({
+//     armorState: _state.armorState,
+//     // armorNameList: _state.armorState.armorNameList,
+// })
 
-/**
- * Map dispatchers to props.
- */
-const mapDispatchToProps = (_dispatch: any) => ({
-    fetchArmor: () => _dispatch(fetchArmorList())
-})
+// /**
+//  * Map dispatchers to props.
+//  */
+// const mapDispatchToProps = (_dispatch: any) => ({
+//     fetchArmor: () => _dispatch(fetchArmorList()),
+// })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArmorModal)
+// export default connect(mapStateToProps, mapDispatchToProps)(ArmorModal)

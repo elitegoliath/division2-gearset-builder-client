@@ -1,16 +1,29 @@
 import React from 'react'
 import './index.scss'
 import { Button, Modal, Form, Segment, FormGroup } from 'semantic-ui-react';
-import { Weapon } from '../../models/weapon.model';
-import { eWeaponType } from '../../constants';
-import ArmorModal from './components/armorModal';
+// import { Weapon } from '../../models/weapon.model';
+import { eWeaponType, tFormSelectItem } from '../../constants';
+import { ArmorModal } from './components/armorModal';
+import { iAppState } from '../../state/reducers';
+import { fetchArmorList } from '../../state/actions/armor.actions';
+import { connect } from 'react-redux';
+import { List } from 'immutable';
+import { Armor } from '../../models/armor.model';
 
-export const AdminPage = () => {
+interface iAdminPage {
+    armorList?: List<Armor>
+    armorNameList?: List<tFormSelectItem>
+    fetchArmor?: any
+}
+
+export const AdminPage = (_props: iAdminPage) => {
+    const { armorList, armorNameList, fetchArmor } = _props
+
     return (
         <div className='admin-page'>
             <div className='admin-page__data-input-buttons'>
                 <div className='admin-page__button'>
-                    {weaponModal()}
+                    {/* {weaponModal()} */}
                 </div>
 
                 {/* <div className='admin-page__button'>
@@ -18,7 +31,7 @@ export const AdminPage = () => {
                 </div> */}
 
                 <div className='admin-page__button'>
-                    <ArmorModal />
+                    <ArmorModal armorList={armorList} armorNameList={armorNameList} fetchArmor={fetchArmor}/>
                 </div>
 
                 {/* <div className='admin-page__button'>
@@ -37,27 +50,41 @@ export const AdminPage = () => {
     )
 }
 
-const weaponModal = () => {
-    const typeOptions: {key: number, text: string, value: number}[] = [
-        { key: eWeaponType.Rifle , text: eWeaponType[eWeaponType.Rifle], value: eWeaponType.Rifle},
-    ]
+const mapStateToProps = (_state: iAppState) => ({
+    armorList: _state.armorState.armorList,
+    armorNameList: _state.armorState.armorNameList,
+})
 
-    const handleSubmit = () => {
+/**
+ * Map dispatchers to props.
+ */
+const mapDispatchToProps = (_dispatch: any) => ({
+    fetchArmor: () => _dispatch(fetchArmorList()),
+})
 
-    }
+export default connect(mapStateToProps, mapDispatchToProps)(AdminPage)
 
-    return (
-        <Modal basic trigger={<Button size='mini'>Weapon Modal</Button>}>
-            <Modal.Content>
-                <Segment inverted>
-                    <Form inverted onSubmit={handleSubmit}>
-                        <FormGroup widths='equal'>
-                            <Form.Input placeholder='Weapon Model...' name='model' label='Weapon Model' />
-                            <Form.Select placeholder='Weapon Type...' name='type' options={typeOptions} label='Weapon Type' />
-                        </FormGroup>
-                    </Form>
-                </Segment>
-            </Modal.Content>
-        </Modal>
-    )
-}
+// const weaponModal = () => {
+//     const typeOptions: {key: number, text: string, value: number}[] = [
+//         { key: eWeaponType.Rifle , text: eWeaponType[eWeaponType.Rifle], value: eWeaponType.Rifle},
+//     ]
+
+//     const handleSubmit = () => {
+
+//     }
+
+//     return (
+//         <Modal basic trigger={<Button size='mini'>Weapon Modal</Button>}>
+//             <Modal.Content>
+//                 <Segment inverted>
+//                     <Form inverted onSubmit={handleSubmit}>
+//                         <FormGroup widths='equal'>
+//                             <Form.Input placeholder='Weapon Model...' name='model' label='Weapon Model' />
+//                             <Form.Select placeholder='Weapon Type...' name='type' options={typeOptions} label='Weapon Type' />
+//                         </FormGroup>
+//                     </Form>
+//                 </Segment>
+//             </Modal.Content>
+//         </Modal>
+//     )
+// }

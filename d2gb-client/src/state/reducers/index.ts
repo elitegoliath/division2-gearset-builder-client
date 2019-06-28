@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { BuilderReducer, defaultBuilderState, iBuilderState } from './builder.reducer'
 import { iImageState, defaultImageState, ImageReducer } from './images.reducer'
-import { firestoreReducer } from 'redux-firestore'
+// import { firestoreReducer } from 'redux-firestore'
 import { iArmorState, defaultArmorState, ArmorReducer } from './armor.reducer';
 
 
@@ -9,7 +9,7 @@ export type iAppState = {
     builderState: iBuilderState
     imageState: iImageState
     armorState: iArmorState
-    firestore: any
+    // firestore: any
 }
 
 /**
@@ -19,7 +19,7 @@ export const INITIAL_STATE: iAppState = {
     builderState: defaultBuilderState,
     imageState: defaultImageState,
     armorState: defaultArmorState,
-    firestore: null,
+    // firestore: null,
 }
 
 /**
@@ -28,6 +28,6 @@ export const INITIAL_STATE: iAppState = {
 export default combineReducers({
     builderState: BuilderReducer,
     imageState: ImageReducer,
-    armoreState: ArmorReducer,
-    firestore: firestoreReducer,
+    armorState: ArmorReducer,
+    // firestore: firestoreReducer,
 })
