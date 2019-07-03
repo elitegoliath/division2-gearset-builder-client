@@ -5,7 +5,17 @@ export enum eEquipmentCategory {
 }
 
 export enum eGearSlot {
-    // TODO: This
+    PrimaryWeapon = 'primaryWeapon',      // 0
+    SecondaryWeapon = 'secondaryWeapon',  // 1
+    Sidearm = 'sidearm',                  // 2
+    Mask = 'mask',                        // 3
+    Backpack = 'backpack',                // 4
+    Chest = 'chest',                      // 5
+    Gloves = 'gloves',                    // 6
+    Holster = 'holster',                  // 7
+    Kneepads = 'kneepads',                // 8
+    FirstGadget = 'firstGadget',          // 9
+    SecondGadget = 'secondGadget',        // 10
 }
 
 export enum eArmorModel {

@@ -2,7 +2,7 @@ import { Record } from 'immutable'
 import { Weapon } from './weapon.model'
 import { Armor } from './armor.model'
 import { Gadget } from './gadget.model'
-import Constants from '../constants';
+import Constants, { eGearSlot } from '../constants';
 
 export type tGearSet = {
     primaryWeapon?: Weapon
@@ -20,17 +20,17 @@ export type tGearSet = {
 };
 
 const DefaultGearSet = Record<tGearSet>({
-    primaryWeapon: new Weapon({gearSlot: 'primaryWeapon'}),
-    secondaryWeapon: new Weapon({gearSlot: 'secondaryWeapon'}),
-    sidearm: new Weapon({gearSlot: 'sidearm'}),
-    mask: new Armor({iconURL: Constants.ICON_GEAR_MASK, gearSlot: 'mask'}),
-    backpack: new Armor({iconURL: Constants.ICON_GEAR_BACKPACK, gearSlot: 'backpack'}),
-    chest: new Armor({iconURL: Constants.ICON_GEAR_CHEST, gearSlot: 'chest'}),
-    gloves: new Armor({iconURL: Constants.ICON_GEAR_GLOVES, gearSlot: 'gloves'}),
-    holster: new Armor({iconURL: Constants.ICON_GEAR_HOLSTER, gearSlot: 'holster'}),
-    kneepads: new Armor({iconURL: Constants.ICON_GEAR_KNEEPADS, gearSlot: 'kneepads'}),
-    firstGadget: new Gadget({gearSlot: 'firstGadget'}),
-    secondGadget: new Gadget({gearSlot: 'secondGadget'}),
+    primaryWeapon: new Weapon({gearSlot: eGearSlot.PrimaryWeapon}),
+    secondaryWeapon: new Weapon({gearSlot: eGearSlot.SecondaryWeapon}),
+    sidearm: new Weapon({gearSlot: eGearSlot.Sidearm}),
+    mask: new Armor({iconURL: Constants.ICON_GEAR_MASK, gearSlot: eGearSlot.Mask}),
+    backpack: new Armor({iconURL: Constants.ICON_GEAR_BACKPACK, gearSlot: eGearSlot.Backpack}),
+    chest: new Armor({iconURL: Constants.ICON_GEAR_CHEST, gearSlot: eGearSlot.Chest}),
+    gloves: new Armor({iconURL: Constants.ICON_GEAR_GLOVES, gearSlot: eGearSlot.Gloves}),
+    holster: new Armor({iconURL: Constants.ICON_GEAR_HOLSTER, gearSlot: eGearSlot.Holster}),
+    kneepads: new Armor({iconURL: Constants.ICON_GEAR_KNEEPADS, gearSlot: eGearSlot.Kneepads}),
+    firstGadget: new Gadget({gearSlot: eGearSlot.FirstGadget}),
+    secondGadget: new Gadget({gearSlot: eGearSlot.SecondGadget}),
 }, 'Gear Set Model')
 
 export class GearSet extends DefaultGearSet implements tGearSet {

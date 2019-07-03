@@ -1,9 +1,9 @@
 import { Record, List } from 'immutable'
-import Constants, { eGadgetType, eGadgetModel, eEquipmentCategory } from '../constants'
+import Constants, { eGadgetType, eGadgetModel, eEquipmentCategory, eGearSlot } from '../constants'
 import { GadgetMod } from './gadgetMod.model'
 
 export type tGadget = {
-    gearSlot?: string
+    gearSlot?: eGearSlot
     type?: eGadgetType
     model?: eGadgetModel
     mods?: List<GadgetMod>

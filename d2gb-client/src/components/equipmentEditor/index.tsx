@@ -3,38 +3,43 @@ import './index.scss'
 import { Modal } from 'semantic-ui-react'
 import { iAppState } from '../../state/reducers'
 import { connect } from 'react-redux'
-import { CLOSE_EQUIPMENT_EDITOR } from '../../state/actions/builder.actions'
+import { CLOSE_EQUIPMENT_EDITOR, fetchGearModel } from '../../state/actions/builder.actions'
 import { Armor } from '../../models/armor.model'
 import { Weapon } from '../../models/weapon.model'
 import { Gadget } from '../../models/gadget.model'
-import { eEquipmentCategory } from '../../constants'
+import { eEquipmentCategory, eGearSlot } from '../../constants'
+import { GearSet } from '../../models/gearSet.model';
 
 export interface iEquipmentEditor {
     isOpen?: boolean
     closeEditor?: any
-    model?: Armor | Weapon | Gadget
+    gearSlot?: eGearSlot
+    gearSet?: GearSet
 }
 
 export const EquipmentEditor = (_props: iEquipmentEditor) => {
-    const { isOpen, model } = _props
+    const { isOpen, gearSlot, gearSet } = _props
 
     const handleClose = () => {
         _props.closeEditor()
     }
+
+    console.log('Gear Set', gearSet)
+    // const gearModel: Armor | Weapon | Gadget = gearSet[eGearSlot[gearSlot]]
 
     const renderCategory = (_model: Armor | Weapon | Gadget) => {
         switch (_model.category) {
             case eEquipmentCategory.Weapon: return weaponEditor(_model as Weapon)
             case eEquipmentCategory.Armor: return armorEditor(_model as Armor)
             case eEquipmentCategory.Gadget: return gadgetEditor(_model as Gadget)
-            default: return <div>Sumthin is jacked here...</div>
+            default: return <div></div>
         }
     }
 
     return (
         <Modal open={isOpen} onClose={handleClose}>
             <Modal.Content>
-                {model && isOpen ? renderCategory(model) : <div></div>}
+                {/* {model && isOpen ? renderCategory(model) : <div></div>} */}
             </Modal.Content>
         </Modal>
     )
@@ -57,7 +62,8 @@ const gadgetEditor = (_model: Gadget) => {
  */
 const mapStateToProps = (_state: iAppState) => ({
     isOpen: _state.builderState.isEquipmentEditorOpen,
-    model: _state.builderState.equipmentEditorModel,
+    gearSlot: _state.builderState.equipmentEditorGearSlot,
+    gearSet: _state.builderState.gearSet,
 })
 
 /**

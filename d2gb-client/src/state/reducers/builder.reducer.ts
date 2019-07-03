@@ -4,6 +4,7 @@ import * as Actions from '../actions/builder.actions'
 import { Armor } from '../../models/armor.model'
 import { Weapon } from '../../models/weapon.model'
 import { Gadget } from '../../models/gadget.model'
+import { eGearSlot } from '../../constants';
 
 /**
  * Builder State interface.
@@ -11,7 +12,7 @@ import { Gadget } from '../../models/gadget.model'
 export type iBuilderState = {
     gearSet: GearSet
     isEquipmentEditorOpen: boolean
-    equipmentEditorModel: Armor | Weapon | Gadget
+    equipmentEditorGearSlot: eGearSlot
 }
 
 /**
@@ -20,7 +21,7 @@ export type iBuilderState = {
 export const defaultBuilderState: iBuilderState = {
     gearSet: new GearSet(),
     isEquipmentEditorOpen: false,
-    equipmentEditorModel: null,
+    equipmentEditorGearSlot: null,
 }
 
 /**
@@ -39,13 +40,13 @@ export const BuilderReducer = (_state: iBuilderState = INITIAL_STATE, _action: i
         case Actions.OPEN_EQUIPMENT_EDITOR: return {
             ..._state,
             isEquipmentEditorOpen: true,
-            equipmentEditorModel: _action.payload,
+            equipmentEditorGearSlot: _action.payload,
         }
 
         case Actions.CLOSE_EQUIPMENT_EDITOR: return {
             ..._state,
             isEquipmentEditorOpen: false,
-            equipmentEditorModel: null,
+            equipmentEditorGearSlot: null,
         }
 
         default: return _state
