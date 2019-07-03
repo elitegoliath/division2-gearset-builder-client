@@ -20,17 +20,17 @@ export type tGearSet = {
 };
 
 const DefaultGearSet = Record<tGearSet>({
-    primaryWeapon: new Weapon(),
-    secondaryWeapon: new Weapon(),
-    sidearm: new Weapon(),
-    mask: new Armor({iconURL: Constants.ICON_GEAR_MASK}),
-    backpack: new Armor({iconURL: Constants.ICON_GEAR_BACKPACK}),
-    chest: new Armor({iconURL: Constants.ICON_GEAR_CHEST}),
-    gloves: new Armor({iconURL: Constants.ICON_GEAR_GLOVES}),
-    holster: new Armor({iconURL: Constants.ICON_GEAR_HOLSTER}),
-    kneepads: new Armor({iconURL: Constants.ICON_GEAR_KNEEPADS}),
-    firstGadget: new Gadget(),
-    secondGadget: new Gadget(),
+    primaryWeapon: new Weapon({gearSlot: 'primaryWeapon'}),
+    secondaryWeapon: new Weapon({gearSlot: 'secondaryWeapon'}),
+    sidearm: new Weapon({gearSlot: 'sidearm'}),
+    mask: new Armor({iconURL: Constants.ICON_GEAR_MASK, gearSlot: 'mask'}),
+    backpack: new Armor({iconURL: Constants.ICON_GEAR_BACKPACK, gearSlot: 'backpack'}),
+    chest: new Armor({iconURL: Constants.ICON_GEAR_CHEST, gearSlot: 'chest'}),
+    gloves: new Armor({iconURL: Constants.ICON_GEAR_GLOVES, gearSlot: 'gloves'}),
+    holster: new Armor({iconURL: Constants.ICON_GEAR_HOLSTER, gearSlot: 'holster'}),
+    kneepads: new Armor({iconURL: Constants.ICON_GEAR_KNEEPADS, gearSlot: 'kneepads'}),
+    firstGadget: new Gadget({gearSlot: 'firstGadget'}),
+    secondGadget: new Gadget({gearSlot: 'secondGadget'}),
 }, 'Gear Set Model')
 
 export class GearSet extends DefaultGearSet implements tGearSet {

@@ -3,6 +3,7 @@ import Constants, { eGadgetType, eGadgetModel, eEquipmentCategory } from '../con
 import { GadgetMod } from './gadgetMod.model'
 
 export type tGadget = {
+    gearSlot?: string
     type?: eGadgetType
     model?: eGadgetModel
     mods?: List<GadgetMod>

@@ -4,6 +4,10 @@ export enum eEquipmentCategory {
     Gadget,  // 2
 }
 
+export enum eGearSlot {
+    // TODO: This
+}
+
 export enum eArmorModel {
     Lomond_Medium_Breather = '"Lomond" Medium Breather',
 }

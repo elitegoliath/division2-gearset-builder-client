@@ -4,6 +4,7 @@ import { Talent } from './talent.model'
 import { WeaponMod } from './weaponMod.model'
 
 export type tWeapon = {
+    gearSlot?: string
     model?: string
     type?: eWeaponType
     perk?: tPerk

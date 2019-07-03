@@ -4,6 +4,7 @@ import { Talent } from './talent.model'
 import { ArmorMod } from './armorMod.model'
 
 export type tArmor = {
+    gearSlot?: string
     model?: string
     type?: eArmorType
     baseArmor?: number
