@@ -1,10 +1,10 @@
 import { iReduxAction } from '.'
-import { eGearSlot } from '../../constants'
+import { tGearSlot } from '../../constants';
 
 const PREFIX = 'BUILDER_'
 
 export const OPEN_EQUIPMENT_EDITOR = PREFIX + 'OPEN_EQUIPMENT_EDITOR'
-export const openEquipmentEditor = (_gearSetSlot: eGearSlot): iReduxAction => ({
+export const openEquipmentEditor = (_gearSetSlot: tGearSlot): iReduxAction => ({
     type: OPEN_EQUIPMENT_EDITOR,
     payload: _gearSetSlot,
 })

@@ -3,17 +3,17 @@ import './index.scss'
 import { Modal } from 'semantic-ui-react'
 import { iAppState } from '../../state/reducers'
 import { connect } from 'react-redux'
-import { CLOSE_EQUIPMENT_EDITOR, fetchGearModel } from '../../state/actions/builder.actions'
+import { CLOSE_EQUIPMENT_EDITOR } from '../../state/actions/builder.actions'
 import { Armor } from '../../models/armor.model'
 import { Weapon } from '../../models/weapon.model'
 import { Gadget } from '../../models/gadget.model'
-import { eEquipmentCategory, eGearSlot } from '../../constants'
+import { eEquipmentCategory, eGearSlot, tGearSlot } from '../../constants'
 import { GearSet } from '../../models/gearSet.model';
 
 export interface iEquipmentEditor {
     isOpen?: boolean
     closeEditor?: any
-    gearSlot?: eGearSlot
+    gearSlot?: tGearSlot
     gearSet?: GearSet
 }
 
@@ -24,7 +24,7 @@ export const EquipmentEditor = (_props: iEquipmentEditor) => {
         _props.closeEditor()
     }
 
-    console.log('Gear Set', gearSet)
+    console.log('Gear Set', gearSet.get(gearSlot))
     // const gearModel: Armor | Weapon | Gadget = gearSet[eGearSlot[gearSlot]]
 
     const renderCategory = (_model: Armor | Weapon | Gadget) => {

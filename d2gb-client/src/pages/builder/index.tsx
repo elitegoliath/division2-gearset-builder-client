@@ -10,13 +10,14 @@ import { WeaponLayout, ArmorLayout, GadgetLayout } from '../../components/equipm
 import { Weapon } from '../../models/weapon.model'
 import { Armor } from '../../models/armor.model'
 import { Gadget } from '../../models/gadget.model'
+import { eGearSlot, tGearSlot } from '../../constants';
 
 /**
  * Props interface for the Builder Page.
  */
 export interface iBuilderPageProps {
     builderState?: iBuilderState
-    openEditor?: any
+    openEditor?: (_gearSlot: tGearSlot) => {}
 }
 
 /**
@@ -25,6 +26,8 @@ export interface iBuilderPageProps {
  */
 export const BuilderPage = (_props: iBuilderPageProps) => {
     const gearSet: GearSet = _props.builderState.gearSet
+
+    console.log(eGearSlot.PrimaryWeapon)
 
     return (
         <div className='builder-page-root'>
@@ -57,7 +60,7 @@ export const BuilderPage = (_props: iBuilderPageProps) => {
 
 const setWeaponCard = (_weapon: Weapon, _dispatchFunc: any) => {
     const handleClick = () => {
-        _dispatchFunc(_weapon)
+        _dispatchFunc(_weapon.gearSlot)
     }
 
     return (
@@ -71,7 +74,7 @@ const setWeaponCard = (_weapon: Weapon, _dispatchFunc: any) => {
 
 const setArmorCard = (_armor: Armor, _dispatchFunc: any) => {
     const handleClick = () => {
-        _dispatchFunc(_armor)
+        _dispatchFunc(_armor.gearSlot)
     }
 
     return (
@@ -85,7 +88,7 @@ const setArmorCard = (_armor: Armor, _dispatchFunc: any) => {
 
 const setGadgetCard = (_gadget: Gadget, _dispatchFunc: any) => {
     const handleClick = () => {
-        _dispatchFunc(_gadget)
+        _dispatchFunc(_gadget.gearSlot)
     }
 
     return (
@@ -108,7 +111,7 @@ const mapStateToProps = (_state: iAppState) => ({
  * Map dispatchers to props.
  */
 const mapDispatchToProps = (_dispatch: any) => ({
-    openEditor: (_item: Armor | Weapon | Gadget) => _dispatch({ type: OPEN_EQUIPMENT_EDITOR, payload: _item })
+    openEditor: (_gearSlot: tGearSlot) => _dispatch({ type: OPEN_EQUIPMENT_EDITOR, payload: _gearSlot })
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BuilderPage)

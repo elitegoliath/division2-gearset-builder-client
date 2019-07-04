@@ -5,18 +5,20 @@ export enum eEquipmentCategory {
 }
 
 export enum eGearSlot {
-    PrimaryWeapon = 'primaryWeapon',      // 0
-    SecondaryWeapon = 'secondaryWeapon',  // 1
-    Sidearm = 'sidearm',                  // 2
-    Mask = 'mask',                        // 3
-    Backpack = 'backpack',                // 4
-    Chest = 'chest',                      // 5
-    Gloves = 'gloves',                    // 6
-    Holster = 'holster',                  // 7
-    Kneepads = 'kneepads',                // 8
-    FirstGadget = 'firstGadget',          // 9
-    SecondGadget = 'secondGadget',        // 10
+    PrimaryWeapon = 'primaryWeapon',
+    SecondaryWeapon = 'secondaryWeapon',
+    Sidearm = 'sidearm',
+    Mask = 'mask',
+    Backpack = 'backpack',
+    Chest = 'chest',
+    Gloves = 'gloves',
+    Holster = 'holster',
+    Kneepads = 'kneepads',
+    FirstGadget = 'firstGadget',
+    SecondGadget = 'secondGadget',
 }
+
+export type tGearSlot = 'mask' | 'primaryWeapon' | 'secondaryWeapon' | 'sidearm' | 'backpack' | 'chest' | 'gloves' | 'holster' | 'kneepads' | 'firstGadget' | 'secondGadget'
 
 export enum eArmorModel {
     Lomond_Medium_Breather = '"Lomond" Medium Breather',

@@ -1,10 +1,10 @@
 import { Record, List } from 'immutable'
-import Constants, { eArmorType, tBrand, tAttribute, eEquipmentCategory, eArmorModSlotType, eGearSlot } from '../constants'
+import Constants, { eArmorType, tBrand, tAttribute, eEquipmentCategory, eArmorModSlotType, eGearSlot, tGearSlot } from '../constants'
 import { Talent } from './talent.model'
 import { ArmorMod } from './armorMod.model'
 
 export type tArmor = {
-    gearSlot?: eGearSlot
+    gearSlot?: tGearSlot
     model?: string
     type?: eArmorType
     baseArmor?: number
@@ -17,19 +17,28 @@ export type tArmor = {
     possibleModSlotTypes?: List<eArmorModSlotType>
     iconURL?: string
     readonly category?: eEquipmentCategory
-};
+}
 
 const DefaultArmor = Record<tArmor>({
-    category: eEquipmentCategory.Armor,
+    gearSlot: null,
+    model: null,
+    type: null,
+    baseArmor: 0,
+    brand: null,
+    attributeLimit: 0,
+    possibleAttributes: null,
+    modSlotLimit: 0,
+    possibleModSlotTypes: null,
     iconURL: Constants.ICON_GEAR_DEFAULT,
+    category: eEquipmentCategory.Armor,
 }, 'Armor Model')
 
 export class Armor extends DefaultArmor implements tArmor {
     constructor(_params?: tArmor) {
         if (_params) {
-            super(_params);
+            super(_params)
         } else {
-            super();
+            super()
         }
     }
 }
