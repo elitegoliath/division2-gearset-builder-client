@@ -19,10 +19,11 @@ export enum eGearSlot {
 }
 
 export type tGearSlot = 'mask' | 'primaryWeapon' | 'secondaryWeapon' | 'sidearm' | 'backpack' | 'chest' | 'gloves' | 'holster' | 'kneepads' | 'firstGadget' | 'secondGadget'
+// export type tArmorType = 'mask' | 'backpack' | 'chest' | 'gloves' | 'holster' | 'kneepads'
 
-export enum eArmorModel {
-    Lomond_Medium_Breather = '"Lomond" Medium Breather',
-}
+// export enum eArmorModel {
+//     Lomond_Medium_Breather = '"Lomond" Medium Breather',
+// }
 
 export enum eGadgetModel {
     

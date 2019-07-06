@@ -20,13 +20,12 @@ export const ArmorReducer = (_state: iArmorState = INITIAL_STATE, _action: iRedu
     switch(_action.type) {
         // TODO: Add armor to a list. Also add a list of armor names.
         case Actions.RECEIVED_ARMOR_LIST: {
-            console.log('RECEIVED')
             let nameList: List<tFormSelectItem> = List<tFormSelectItem>()
             const aList: List<Armor> = _action.payload
             aList.forEach(a => nameList = nameList.push({
-                key: a.model,
-                text: a.model,
-                value: a.model,
+                key: a.armorName,
+                text: a.armorName,
+                value: a.armorName,
             }))
 
             return {

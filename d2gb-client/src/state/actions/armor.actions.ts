@@ -22,7 +22,6 @@ export const fetchArmorList = () => {
                 })
 
                 _dispatch(recievedArmorList(armorList))
-                console.log('Armor List', armorList.toJSON())
             } catch (_e) {
                 // TODO: end loading state, handle errors.
                 console.log('Error: ', _e)
