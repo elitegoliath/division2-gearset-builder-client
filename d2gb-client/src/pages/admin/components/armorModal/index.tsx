@@ -17,8 +17,6 @@ export const ArmorModal = (_props: iArmorModal) => {
 
     // let addingNew: boolean = false;
 
-    console.log('Armor name list', armorNameList.toJS());
-
     const typeOptions: { key: number, text: string, value: number }[] = [
         { key: eArmorType.Mask, text: eArmorType[eArmorType.Mask], value: eArmorType.Mask },
     ]
@@ -45,6 +43,7 @@ export const ArmorModal = (_props: iArmorModal) => {
             trigger={<Button size='mini' onClick={handleOpen}>Armor Modal</Button>}>
             <Modal.Content>
                 {<Form inverted onSubmit={handleSubmit}>
+                    <Button size='small'>Edit Existing Armor</Button>
                     <FormGroup widths='equal'>
                         {armorNameList ? <Form.Select placeholder='Select Existing Armor...' options={armorNameList.toJS()}></Form.Select> : ''}
                         <Form>
@@ -53,6 +52,7 @@ export const ArmorModal = (_props: iArmorModal) => {
                             <Button>Add</Button>
                         </Form>
                     </FormGroup>
+                    <Button size='small'>Add New Armor</Button>
                     <FormGroup widths='equal'>
                         <Form.Input placeholder='Armor Model...' name='model' label='Armor Model' />
                         <Form.Select placeholder='Armor Type...' name='type' options={typeOptions} label='Armor Type' />
