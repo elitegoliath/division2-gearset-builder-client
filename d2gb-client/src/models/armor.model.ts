@@ -1,13 +1,14 @@
 import { Record, List } from 'immutable'
 import Constants, { tAttribute, eEquipmentCategory, eArmorModSlotType, tGearSlot } from '../constants'
 import { Talent } from './talent.model'
+import { Brand } from './brand.model'
 
 export type tArmor = {
     gearSlot?: tGearSlot
     armorName?: string
     type?: number
     baseArmor?: number
-    brandName?: string
+    brand?: Brand
     attributeLimit?: number
     possibleAttributes?: List<tAttribute>
     talentLimit?: number
@@ -23,7 +24,7 @@ const DefaultArmor = Record<tArmor>({
     armorName: null,
     type: null,
     baseArmor: 0,
-    brandName: null,
+    brand: null,
     attributeLimit: 0,
     possibleAttributes: null,
     modSlotLimit: 0,

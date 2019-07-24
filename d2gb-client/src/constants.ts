@@ -76,21 +76,21 @@ export enum eStatType {
 export type tPerk = {
     description?: string
     modifier?: tModifier
-};
+}
 
 export type tModifier = {
     stat?: eStatType
     amountPercent?: number
     amountAbsolute?: number
-};
+}
 
-export type tBrand = {
-    name?: string
-    iconURL?: string
-    firstModifier?: tModifier
-    secondModifier?: tModifier
-    thirdModifier?: tModifier
-};
+// export type tBrand = {
+//     name?: string
+//     iconURL?: string
+//     firstModifier?: tModifier
+//     secondModifier?: tModifier
+//     thirdModifier?: tModifier
+// }
 
 export type tAttribute = {
     type?: eAttributeType
@@ -102,7 +102,7 @@ export type tRequirement = {
     lessThan?: boolean
     amount?: number
     attribute?: tAttribute
-};
+}
 
 export type tFormSelectItem = {
     key: string

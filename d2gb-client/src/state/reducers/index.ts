@@ -19,6 +19,7 @@ export const INITIAL_STATE: iAppState = {
     builderState: defaultBuilderState,
     imageState: defaultImageState,
     armorState: defaultArmorState,
+    
     // firestore: null,
 }
 
