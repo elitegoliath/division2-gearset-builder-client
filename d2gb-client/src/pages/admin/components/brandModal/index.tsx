@@ -5,5 +5,5 @@ interface iBrandModal {
 }
 
 export const BrandModal = (_props: iBrandModal) => {
-
+    
 }

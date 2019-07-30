@@ -1,6 +1,7 @@
 import { iReduxAction } from '../actions'
 import { List } from 'immutable'
 import { Armor } from '../../models/armor.model'
+import { Brand } from '../../models/brand.model'
 
 const PREFIX = 'ARMOR_'
 
@@ -15,9 +16,17 @@ export const fetchArmorList = () => {
         (async () => {
             try {
                 // TODO: start loading state.
-                const request = await getFirestore().collection('armor').get()
+                const fs = getFirestore()
+                const brandRequest = await fs.collection('brands').get()
+                const armorRequest = await fs.collection('armor').get()
+
+                let brandList: List<Brand> = List<Brand>()
+                brandList.forEach((_doc: any) => {
+                    brandList = brandList.push(new Brand({ ..._doc.data() }))
+                })
+
                 let armorList: List<Armor> = List<Armor>()
-                request.forEach((_doc: any) => {
+                armorRequest.forEach((_doc: any) => {
                     armorList = armorList.push(new Armor({ ..._doc.data() }))
                 })
 
