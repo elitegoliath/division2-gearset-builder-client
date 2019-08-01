@@ -27,6 +27,8 @@ export const fetchArmorList = () => {
 
                 let armorList: List<Armor> = List<Armor>()
                 armorRequest.forEach((_doc: any) => {
+                    let newArmor = new Armor({..._doc.data()})
+                    let armorBrand: Brand | null = newArmor.brandName ? brandList.find(b => b.name === newArmor.brandName) : null
                     armorList = armorList.push(new Armor({ ..._doc.data() }))
                 })
 
