@@ -24,6 +24,6 @@ export const fetchBrandList = () => {
             } catch (_e) {
                 console.log('Error: ', _e)
             }
-        })
+        })()
     }
 }

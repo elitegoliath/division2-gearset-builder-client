@@ -2,7 +2,7 @@ import { List } from 'immutable'
 import { Armor } from '../../models/armor.model'
 import { iReduxAction } from '../actions'
 import * as Actions from '../actions/armor.actions'
-import { tFormSelectItem } from '../../constants';
+import { tFormSelectItem } from '../../constants'
 
 export type iArmorState = {
     armorList: List<Armor>
