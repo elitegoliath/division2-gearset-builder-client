@@ -1,23 +1,28 @@
 import React from 'react'
 import './index.scss'
-import { Button, Modal, Form, Segment, FormGroup } from 'semantic-ui-react';
-// import { Weapon } from '../../models/weapon.model';
-import { eWeaponType, tFormSelectItem } from '../../constants';
-import { ArmorModal } from './components/armorModal';
-import { iAppState } from '../../state/reducers';
-import { fetchArmorList } from '../../state/actions/armor.actions';
-import { connect } from 'react-redux';
-import { List } from 'immutable';
-import { Armor } from '../../models/armor.model';
+import { Button, Modal, Form, Segment, FormGroup } from 'semantic-ui-react'
+// import { Weapon } from '../../models/weapon.model'
+import { eWeaponType, tFormSelectItem } from '../../constants'
+import { ArmorModal } from './components/armorModal'
+import { iAppState } from '../../state/reducers'
+import { fetchArmorList } from '../../state/actions/armor.actions'
+import { connect } from 'react-redux'
+import { List } from 'immutable'
+import { Armor } from '../../models/armor.model'
+import { Brand } from '../../models/brand.model'
+import { fetchBrandList } from '../../state/actions/brand.actions'
 
 interface iAdminPage {
     armorList?: List<Armor>
     armorNameList?: List<tFormSelectItem>
+    brandList?: List<Brand>
+    brandNameList?: List<tFormSelectItem>
     fetchArmor?: any
+    fetchBrands?: any
 }
 
 export const AdminPage = (_props: iAdminPage) => {
-    const { armorList, armorNameList, fetchArmor } = _props
+    const { armorList, armorNameList, brandList, fetchArmor, fetchBrands } = _props
 
     return (
         <div className='admin-page'>
@@ -31,7 +36,11 @@ export const AdminPage = (_props: iAdminPage) => {
                 </div> */}
 
                 <div className='admin-page__button'>
-                    <ArmorModal armorList={armorList} armorNameList={armorNameList} fetchArmor={fetchArmor}/>
+                    <ArmorModal armorList={armorList}
+                        armorNameList={armorNameList}
+                        brandList={brandList}
+                        fetchBrands={fetchBrands}
+                        fetchArmor={fetchArmor}/>
                 </div>
 
                 {/* <div className='admin-page__button'>
@@ -53,6 +62,8 @@ export const AdminPage = (_props: iAdminPage) => {
 const mapStateToProps = (_state: iAppState) => ({
     armorList: _state.armorState.armorList,
     armorNameList: _state.armorState.armorNameList,
+    brandList: _state.brandState.brandList,
+    brandNameList: _state.brandState.brandNameList,
 })
 
 /**
@@ -60,6 +71,7 @@ const mapStateToProps = (_state: iAppState) => ({
  */
 const mapDispatchToProps = (_dispatch: any) => ({
     fetchArmor: () => _dispatch(fetchArmorList()),
+    fetchBrands: () => _dispatch(fetchBrandList()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminPage)

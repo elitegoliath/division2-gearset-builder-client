@@ -22,14 +22,7 @@ export const fetchArmorList = () => {
                 // const brandList = _getState
                 // console.log(_getState())
                 const fs = getFirestore()
-                let brandList: List<Brand> = _getState().brandState.brandList
-
-                if (brandList.count) {
-                    const brandRequest = await fs.collection('brands').get()
-                    brandRequest.forEach((_doc: any) => {
-                        brandList = brandList.push(new Brand({ ..._doc.data() }))
-                    })
-                }
+                const brandList: List<Brand> = _getState().brandState.brandList
                 const armorRequest = await fs.collection('armor').get()
 
                 // let brandList: List<Brand> = List<Brand>()
@@ -39,9 +32,9 @@ export const fetchArmorList = () => {
 
                 let armorList: List<Armor> = List<Armor>()
                 armorRequest.forEach((_doc: any) => {
-                    // let newArmor = new Armor({..._doc.data()})
-                    // let armorBrand: Brand | null = newArmor.brandName ? brandList.find(b => b.name === newArmor.brandName) : null
-                    armorList = armorList.push(new Armor({ ..._doc.data() }))
+                    let newArmor = new Armor({..._doc.data()})
+                    let armorBrand = brandList.count && newArmor.brandName ? brandList.find(b => b.name === newArmor.brandName) : null
+                    armorList = armorList.push(newArmor.with({brand: armorBrand}))
                 })
 
                 _dispatch(recievedArmorList(armorList))

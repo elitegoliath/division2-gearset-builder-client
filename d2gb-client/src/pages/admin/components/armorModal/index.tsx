@@ -3,12 +3,16 @@ import { Modal, Button, Form, FormGroup, Header } from 'semantic-ui-react'
 import { eArmorType, tFormSelectItem } from '../../../../constants'
 import { List } from 'immutable'
 import { Armor } from '../../../../models/armor.model'
-import { ArmorModalReducer, ArmorModalInitialState, ArmorModalActions } from './armorModal.state';
+import { ArmorModalReducer, ArmorModalInitialState, ArmorModalActions } from './armorModal.state'
+import { Brand } from '../../../../models/brand.model'
 
 interface iArmorModal {
     armorList?: List<Armor>
     armorNameList?: List<tFormSelectItem>
+    brandList?: List<Brand>
+    brandNameList?: List<tFormSelectItem>
     fetchArmor?: any
+    fetchBrands?: any
 }
 
 type tFormOption = {
@@ -18,18 +22,13 @@ type tFormOption = {
 }
 
 export const ArmorModal = (_props: iArmorModal) => {
-    let { armorList, armorNameList, fetchArmor } = _props
+    let { armorList, armorNameList, brandList, brandNameList, fetchArmor, fetchBrands } = _props
 
     const [internalState, internalDispatch] = useReducer(ArmorModalReducer, ArmorModalInitialState)
     const { isOpen, isAddingNew, armorType, armorAmount } = internalState
 
     const typeOptions: tFormOption[] = [
         { key: eArmorType.Mask, text: eArmorType[eArmorType.Mask], value: eArmorType.Mask },
-    ]
-
-    // TODO: Finish this after Brands have been created.
-    const brandOptions: tFormOption[] = [
-        { key: 0, text: '', value: 0 },
     ]
 
     const handleSubmit = () => {
@@ -52,15 +51,25 @@ export const ArmorModal = (_props: iArmorModal) => {
         }})
     }
 
+    const onBrandSelected = (_e: any, {value}: any) => {
+        console.log('Brand Selected: ', value)
+    }
+
     const closeArmorModal = () => {
         internalDispatch({ type: ArmorModalActions.setIsOpen, payload: { isOpen: false } })
     }
 
     useEffect(() => {
-        if (!armorList.size) {
+        if (!brandList.size) {
+            brandList = fetchBrands()
+        }
+
+        if (brandList.size && !armorList.size) {
             armorList = fetchArmor()
         }
-    }, [armorList])
+    }, [armorList, brandList])
+
+    // const brandOptions: tFormOption[] = []
 
     return (
         <Modal
@@ -82,7 +91,15 @@ export const ArmorModal = (_props: iArmorModal) => {
                             </FormGroup>
                             <FormGroup>
                                 <Form.Input placeholder='Armor Amount...' name='amount' label='Armor Amount' value='' />
-                                <Form.Select placeholder='Brand...' name='brand' options={brandOptions} label='Brand' value='' />
+                                {brandNameList ?
+                                    <Form.Select
+                                        label='Brand'
+                                        placeholder='Select Brand...'
+                                        options={brandNameList.toJS()}
+                                        onChange={}
+                                    ></Form.Select>
+                                    : ''}
+                                {/* <Form.Select placeholder='Brand...' name='brand' options={brandOptions} label='Brand' value='' /> */}
                             </FormGroup>
                         </div> :
                         <div>
@@ -91,7 +108,7 @@ export const ArmorModal = (_props: iArmorModal) => {
                             <FormGroup widths='equal'>
                                 {armorNameList ?
                                     <Form.Select
-                                        label='Select Existing Armor'
+                                        label='Existing Armor'
                                         placeholder='Select Existing Armor...'
                                         options={armorNameList.toJS()}
                                         onChange={onArmorSelected}

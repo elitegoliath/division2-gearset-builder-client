@@ -43,4 +43,8 @@ export class Armor extends DefaultArmor implements tArmor {
             super()
         }
     }
+
+    public with(_params: tArmor) {
+        return this.merge(_params) as this;
+    }
 }
