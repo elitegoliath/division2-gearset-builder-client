@@ -22,7 +22,9 @@ interface iAdminPage {
 }
 
 export const AdminPage = (_props: iAdminPage) => {
-    const { armorList, armorNameList, brandList, fetchArmor, fetchBrands } = _props
+    const { armorList, armorNameList, brandList, brandNameList, fetchArmor, fetchBrands } = _props
+
+    // console.log('Brand List', armorList)
 
     return (
         <div className='admin-page'>
@@ -39,6 +41,7 @@ export const AdminPage = (_props: iAdminPage) => {
                     <ArmorModal armorList={armorList}
                         armorNameList={armorNameList}
                         brandList={brandList}
+                        brandNameList={brandNameList}
                         fetchBrands={fetchBrands}
                         fetchArmor={fetchArmor}/>
                 </div>

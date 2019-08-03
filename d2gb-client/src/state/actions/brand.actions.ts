@@ -20,7 +20,7 @@ export const fetchBrandList = () => {
                     brandList = brandList.push(new Brand({ ..._doc.data() }))
                 })
 
-                console.log('fetch brands done')
+                // console.log('fetch brands done', brandList.toJS())
 
                 _dispatch(recievedBrandList(brandList))
             } catch (_e) {

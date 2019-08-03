@@ -21,11 +21,15 @@ export const BrandReducer = (_state: iBrandState = INITIAL_STATE, _action: iRedu
         case Actions.RECIEVED_BRAND_LIST: {
             let nameList: List<tFormSelectItem> = List<tFormSelectItem>()
             const bList: List<Brand> = _action.payload
-            bList.forEach(b => nameList.push({
-                key: b.name,
-                text: b.name,
-                value: b.name,
-            }))
+            bList.forEach(b => {
+                nameList = nameList.push({
+                    key: b.name,
+                    text: b.name,
+                    value: b.name,
+                })
+            })
+
+            console.log(nameList.toJS())
 
             return {
                 ..._state,

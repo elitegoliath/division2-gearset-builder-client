@@ -28,6 +28,8 @@ export const ArmorReducer = (_state: iArmorState = INITIAL_STATE, _action: iRedu
                 value: a.armorName,
             }))
 
+            console.log(nameList.toJS())
+
             return {
                 ..._state,
                 armorList: aList,

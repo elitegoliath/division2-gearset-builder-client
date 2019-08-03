@@ -44,6 +44,7 @@ export const ArmorModal = (_props: iArmorModal) => {
     }
 
     const onArmorSelected = (_e: any, {value}: any) => {
+        console.log('Armor Selected: ', value)
         const selectedArmor: Armor = armorList.find(_a => _a.armorName === value)
         internalDispatch({ type: ArmorModalActions.setArmorProps, payload: {
             armorType: selectedArmor.type,
@@ -64,12 +65,14 @@ export const ArmorModal = (_props: iArmorModal) => {
             brandList = fetchBrands()
         }
 
-        if (brandList.size && !armorList.size) {
+        if (brandList && brandList.size && !armorList.size) {
             armorList = fetchArmor()
         }
     }, [armorList, brandList])
 
     // const brandOptions: tFormOption[] = []
+
+    // console.log(brandNameList.toJS())
 
     return (
         <Modal
@@ -96,7 +99,7 @@ export const ArmorModal = (_props: iArmorModal) => {
                                         label='Brand'
                                         placeholder='Select Brand...'
                                         options={brandNameList.toJS()}
-                                        onChange={}
+                                        onChange={onBrandSelected}
                                     ></Form.Select>
                                     : ''}
                                 {/* <Form.Select placeholder='Brand...' name='brand' options={brandOptions} label='Brand' value='' /> */}
