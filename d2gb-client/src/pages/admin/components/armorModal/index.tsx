@@ -44,8 +44,8 @@ export const ArmorModal = (_props: iArmorModal) => {
     }
 
     const onArmorSelected = (_e: any, {value}: any) => {
-        console.log('Armor Selected: ', value)
         const selectedArmor: Armor = armorList.find(_a => _a.armorName === value)
+        
         internalDispatch({ type: ArmorModalActions.setArmorProps, payload: {
             armorType: selectedArmor.type,
             armorAmount: selectedArmor.baseArmor,
@@ -70,10 +70,6 @@ export const ArmorModal = (_props: iArmorModal) => {
         }
     }, [armorList, brandList])
 
-    // const brandOptions: tFormOption[] = []
-
-    // console.log(brandNameList.toJS())
-
     return (
         <Modal
             basic
@@ -92,18 +88,6 @@ export const ArmorModal = (_props: iArmorModal) => {
                                 <Form.Input placeholder='Armor Model...' name='model' label='Armor Model' value='' />
                                 <Form.Select placeholder='Armor Type...' name='type' options={typeOptions} label='Armor Type' value='' />
                             </FormGroup>
-                            <FormGroup>
-                                <Form.Input placeholder='Armor Amount...' name='amount' label='Armor Amount' value='' />
-                                {brandNameList ?
-                                    <Form.Select
-                                        label='Brand'
-                                        placeholder='Select Brand...'
-                                        options={brandNameList.toJS()}
-                                        onChange={onBrandSelected}
-                                    ></Form.Select>
-                                    : ''}
-                                {/* <Form.Select placeholder='Brand...' name='brand' options={brandOptions} label='Brand' value='' /> */}
-                            </FormGroup>
                         </div> :
                         <div>
                             <Header as='h1' color='teal' textAlign='center'>Editing Existing Armor</Header>
@@ -120,11 +104,19 @@ export const ArmorModal = (_props: iArmorModal) => {
                                 }
                                 <Form.Select placeholder='Armor Type...' name='type' options={typeOptions} label='Armor Type' value={armorType} />
                             </FormGroup>
-                            <FormGroup>
-                                <Form.Input placeholder='Armor Amount...' name='amount' label='Armor Amount' value={armorAmount || ''} />
-                            </FormGroup>
                         </div>
                     }
+                    <FormGroup>
+                        <Form.Input placeholder='Armor Amount...' name='amount' label='Armor Amount' value='' />
+                        {brandNameList ?
+                            <Form.Select
+                                label='Brand'
+                                placeholder='Select Brand...'
+                                options={brandNameList.toJS()}
+                                onChange={onBrandSelected}
+                            ></Form.Select>
+                            : ''}
+                    </FormGroup>
                     <Form.Button color='red' onClick={closeArmorModal}>Cancel</Form.Button>
                     <Form.Button color='green' content='Submit' />
                 </Form>
@@ -138,13 +130,3 @@ const modeButtonStyle = {
     top: 0,
     right: 0,
 }
-
-
-
-// const renderAddNew = () => {
-
-// }
-
-// const renderEditExisting = () => {
-    
-// }
