@@ -6,7 +6,7 @@ import { iAppState } from '../../state/reducers'
 import { iBuilderState } from '../../state/reducers/builder.reducer'
 import { GearSet } from '../../models/gearSet.model'
 import { OPEN_EQUIPMENT_EDITOR } from '../../state/actions/builder.actions'
-import { WeaponLayout, ArmorLayout, GadgetLayout } from '../../components/equipmentCard/equipmentCardLayouts'
+import { WeaponLayout, ArmorLayout, GadgetLayout } from '../../components/equipmentCard/components'
 import { Weapon } from '../../models/weapon.model'
 import { Armor } from '../../models/armor.model'
 import { Gadget } from '../../models/gadget.model'
@@ -26,8 +26,6 @@ export interface iBuilderPageProps {
  */
 export const BuilderPage = (_props: iBuilderPageProps) => {
     const gearSet: GearSet = _props.builderState.gearSet
-
-    console.log(eGearSlot.PrimaryWeapon)
 
     return (
         <div className='builder-page-root'>
@@ -55,8 +53,8 @@ export const BuilderPage = (_props: iBuilderPageProps) => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
 const setWeaponCard = (_weapon: Weapon, _dispatchFunc: any) => {
     const handleClick = () => {

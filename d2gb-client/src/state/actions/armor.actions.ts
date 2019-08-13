@@ -18,17 +18,9 @@ export const fetchArmorList = () => {
         (async () => {
             try {
                 // TODO: start loading state.
-                // await _dispatch(fetchBrandList())
-                // const brandList = _getState
-                // console.log(_getState())
                 const fs = getFirestore()
                 const brandList: List<Brand> = _getState().brandState.brandList
                 const armorRequest = await fs.collection('armor').get()
-
-                // let brandList: List<Brand> = List<Brand>()
-                // brandList.forEach((_doc: any) => {
-                //     brandList = brandList.push(new Brand({ ..._doc.data() }))
-                // })
 
                 let armorList: List<Armor> = List<Armor>()
                 armorRequest.forEach((_doc: any) => {

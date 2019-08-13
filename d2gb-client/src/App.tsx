@@ -1,8 +1,8 @@
 import React from 'react'
 import './App.scss'
-import BuilderPage from './pages/builder'
-import EquipmentEditor from './components/equipmentEditor'
-import AdminPage from './pages/admin'
+import { BuilderPage } from './pages/builder'
+import { EquipmentEditor } from './components/equipmentEditor'
+import { AdminPage } from './pages/admin'
 
 /**
  * Root app.

@@ -5,7 +5,6 @@ import { iImageState, defaultImageState, ImageReducer } from './images.reducer'
 import { iArmorState, defaultArmorState, ArmorReducer } from './armor.reducer'
 import { iBrandState, defaultBrandState, BrandReducer } from './brand.reducer'
 
-
 export type iAppState = {
     builderState: iBuilderState
     imageState: iImageState
