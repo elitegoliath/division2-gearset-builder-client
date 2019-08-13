@@ -1,3 +1,4 @@
+import React from 'react'
 import { Gadget } from '../../../models/gadget.model'
 import { Image } from 'semantic-ui-react'
 

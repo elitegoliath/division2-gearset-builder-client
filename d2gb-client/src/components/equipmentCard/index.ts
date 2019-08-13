@@ -1,1 +1,1 @@
-export { default as EquipmentCard } from './equipmentCard'
+export { EquipmentCard } from './equipmentCard'

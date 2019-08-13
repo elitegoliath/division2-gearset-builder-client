@@ -1,3 +1,4 @@
+import React from 'react'
 import { Armor } from '../../../models/armor.model'
 import { Image } from 'semantic-ui-react'
 

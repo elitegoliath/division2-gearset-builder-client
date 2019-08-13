@@ -3,6 +3,7 @@ interface iArmorModalAction {
     payload?: {
         isOpen?: boolean
         isAddingNew?: boolean
+        hasSelectedArmor?: boolean
         armorType?: number
         armorAmount?: number
     }
@@ -11,6 +12,7 @@ interface iArmorModalAction {
 type tArmorModalState = {
     isOpen?: boolean
     isAddingNew?: boolean
+    hasSelectedArmor?: boolean
     armorType?: number
     armorAmount?: number
 }
@@ -24,6 +26,7 @@ export const ArmorModalActions = {
 export const ArmorModalInitialState: tArmorModalState = {
     isOpen: false,
     isAddingNew: true,
+    hasSelectedArmor: false,
     armorType: null,
     armorAmount: null,
 }
@@ -36,7 +39,7 @@ export const ArmorModalReducer = (_state: tArmorModalState, _action: iArmorModal
             isOpen: true,
             isAddingNew: _action.payload.isAddingNew
         }
-        case ArmorModalActions.setArmorProps: return {..._action.payload}
+        case ArmorModalActions.setArmorProps: return {..._action.payload, hasSelectedArmor: true}
         default: return _state
     }
 }

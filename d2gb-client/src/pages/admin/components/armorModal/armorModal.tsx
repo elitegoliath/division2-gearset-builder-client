@@ -25,7 +25,7 @@ export const ArmorModal = (_props: iArmorModal) => {
     let { armorList, armorNameList, brandList, brandNameList, fetchArmor, fetchBrands } = _props
 
     const [internalState, internalDispatch] = useReducer(ArmorModalReducer, ArmorModalInitialState)
-    const { isOpen, isAddingNew, armorType, armorAmount } = internalState
+    const { isOpen, isAddingNew, hasSelectedArmor, armorType, armorAmount } = internalState
 
     const typeOptions: tFormOption[] = [
         { key: eArmorType.Mask, text: eArmorType[eArmorType.Mask], value: eArmorType.Mask },
@@ -93,32 +93,38 @@ export const ArmorModal = (_props: iArmorModal) => {
                             <Header as='h1' color='teal' textAlign='center'>Editing Existing Armor</Header>
                             <Button size='small' color='orange' style={modeButtonStyle} onClick={changeMode}>Add New Armor</Button>
                             <FormGroup widths='equal'>
-                                {armorNameList ?
+                                {armorNameList &&
                                     <Form.Select
                                         label='Existing Armor'
                                         placeholder='Select Existing Armor...'
                                         options={armorNameList.toJS()}
                                         onChange={onArmorSelected}
-                                    ></Form.Select> :
-                                    ''
+                                    ></Form.Select>
                                 }
-                                <Form.Select placeholder='Armor Type...' name='type' options={typeOptions} label='Armor Type' value={armorType} />
+                                {hasSelectedArmor && 
+                                    <Form.Select placeholder='Armor Type...' name='type' options={typeOptions} label='Armor Type' value={armorType} />
+                                }
                             </FormGroup>
                         </div>
                     }
-                    <FormGroup>
-                        <Form.Input placeholder='Armor Amount...' name='amount' label='Armor Amount' value='' />
-                        {brandNameList ?
-                            <Form.Select
-                                label='Brand'
-                                placeholder='Select Brand...'
-                                options={brandNameList.toJS()}
-                                onChange={onBrandSelected}
-                            ></Form.Select>
-                            : ''}
-                    </FormGroup>
-                    <Form.Button color='red' onClick={closeArmorModal}>Cancel</Form.Button>
-                    <Form.Button color='green' content='Submit' />
+                    
+                    {isAddingNew || hasSelectedArmor &&
+                    <div>
+                        <FormGroup>
+                            <Form.Input placeholder='Armor Amount...' name='amount' label='Armor Amount' value={armorAmount} />
+                            {brandNameList &&
+                                <Form.Select
+                                    label='Brand'
+                                    placeholder='Select Brand...'
+                                    options={brandNameList.toJS()}
+                                    onChange={onBrandSelected}
+                                ></Form.Select>
+                            }
+                        </FormGroup>
+                        <Form.Button color='red' onClick={closeArmorModal}>Cancel</Form.Button>
+                        <Form.Button color='green' content='Submit' />
+                    </div>
+                }
                 </Form>
             </Modal.Content>
         </Modal>
