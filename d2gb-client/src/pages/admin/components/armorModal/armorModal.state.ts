@@ -1,13 +1,4 @@
-interface iArmorModalAction {
-    type?: string
-    payload?: {
-        isOpen?: boolean
-        isAddingNew?: boolean
-        hasSelectedArmor?: boolean
-        armorType?: number
-        armorAmount?: number
-    }
-}
+import { Brand } from '../../../../models/brand.model'
 
 type tArmorModalState = {
     isOpen?: boolean
@@ -15,6 +6,13 @@ type tArmorModalState = {
     hasSelectedArmor?: boolean
     armorType?: number
     armorAmount?: number
+    armorBrand?: Brand
+    armorAttributeLimit?: number
+}
+
+interface iArmorModalAction {
+    type?: string
+    payload: tArmorModalState
 }
 
 export const ArmorModalActions = {
@@ -28,18 +26,20 @@ export const ArmorModalInitialState: tArmorModalState = {
     isAddingNew: true,
     hasSelectedArmor: false,
     armorType: null,
-    armorAmount: null,
+    armorAmount: 0,
+    armorBrand: null,
+    armorAttributeLimit: 0,
 }
 
 export const ArmorModalReducer = (_state: tArmorModalState, _action: iArmorModalAction) => {
     switch(_action.type) {
-        case ArmorModalActions.setIsOpen: return {isOpen: _action.payload.isOpen}
+        case ArmorModalActions.setIsOpen: return {..._state, isOpen: _action.payload.isOpen}
         case ArmorModalActions.setIsAddingNew: return {
             ...ArmorModalInitialState,
             isOpen: true,
             isAddingNew: _action.payload.isAddingNew
         }
-        case ArmorModalActions.setArmorProps: return {..._action.payload, hasSelectedArmor: true}
+        case ArmorModalActions.setArmorProps: return {..._state, ..._action.payload, hasSelectedArmor: true}
         default: return _state
     }
 }

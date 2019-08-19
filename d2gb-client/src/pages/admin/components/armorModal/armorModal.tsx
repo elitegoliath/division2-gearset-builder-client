@@ -22,54 +22,73 @@ type tFormOption = {
 }
 
 export const ArmorModal = (_props: iArmorModal) => {
+    // PROPS
     let { armorList, armorNameList, brandList, brandNameList, fetchArmor, fetchBrands } = _props
 
+    // COMPONENT STATE
     const [internalState, internalDispatch] = useReducer(ArmorModalReducer, ArmorModalInitialState)
     const { isOpen, isAddingNew, hasSelectedArmor, armorType, armorAmount } = internalState
 
+    // Options for Armor Type.
     const typeOptions: tFormOption[] = [
         { key: eArmorType.Mask, text: eArmorType[eArmorType.Mask], value: eArmorType.Mask },
     ]
 
+    // On Submit.
     const handleSubmit = () => {
         // TODO: Handle this.
     }
 
+    // On Open.
     const handleOpen = () => {
         internalDispatch({ type: ArmorModalActions.setIsOpen, payload: { isOpen: true } })
     }
 
+    // On mode change, which toggles between Adding New and Editing Existing.
     const changeMode = () => {
         internalDispatch({ type: ArmorModalActions.setIsAddingNew, payload: { isAddingNew: !internalState.isAddingNew } })
     }
 
+    // When an existing piece of armor has been selected for edit.
     const onArmorSelected = (_e: any, {value}: any) => {
         const selectedArmor: Armor = armorList.find(_a => _a.armorName === value)
         
-        internalDispatch({ type: ArmorModalActions.setArmorProps, payload: {
-            armorType: selectedArmor.type,
-            armorAmount: selectedArmor.baseArmor,
-        }})
+        if (selectedArmor) {
+            internalDispatch({ type: ArmorModalActions.setArmorProps, payload: {
+                armorType: selectedArmor.type,
+                armorAmount: selectedArmor.baseArmor,
+                armorBrand: selectedArmor.brand,
+            }})
+        }
     }
 
+    // When a Brand has been selected...
     const onBrandSelected = (_e: any, {value}: any) => {
-        console.log('Brand Selected: ', value)
+        const selectedBrand: Brand = brandList.find(_b => _b.name === value)
+
+        if (selectedBrand) {
+            internalDispatch({type: ArmorModalActions.setArmorProps, payload: { armorBrand: selectedBrand }})
+        }
     }
 
+    // When the Armor Modal has been closed.
     const closeArmorModal = () => {
         internalDispatch({ type: ArmorModalActions.setIsOpen, payload: { isOpen: false } })
     }
 
+    // EFFECTS
     useEffect(() => {
         if (!brandList.size) {
-            brandList = fetchBrands()
+            fetchBrands()
         }
 
         if (brandList && brandList.size && !armorList.size) {
-            armorList = fetchArmor()
+            fetchArmor()
         }
     }, [armorList, brandList])
 
+
+    // TEMPLATE
     return (
         <Modal
             basic
@@ -108,7 +127,7 @@ export const ArmorModal = (_props: iArmorModal) => {
                         </div>
                     }
                     
-                    {isAddingNew || hasSelectedArmor &&
+                    {(isAddingNew || hasSelectedArmor) &&
                     <div>
                         <FormGroup>
                             <Form.Input placeholder='Armor Amount...' name='amount' label='Armor Amount' value={armorAmount} />
@@ -131,6 +150,7 @@ export const ArmorModal = (_props: iArmorModal) => {
     )
 }
 
+// STYLES
 const modeButtonStyle = {
     position: 'absolute',
     top: 0,
