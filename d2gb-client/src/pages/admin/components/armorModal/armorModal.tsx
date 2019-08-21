@@ -11,8 +11,8 @@ interface iArmorModal {
     armorNameList?: List<tFormSelectItem>
     brandList?: List<Brand>
     brandNameList?: List<tFormSelectItem>
-    fetchArmor?: any
-    fetchBrands?: any
+    fetchArmor?: Function
+    fetchBrands?: Function
 }
 
 type tFormOption = {
@@ -49,32 +49,40 @@ export const ArmorModal = (_props: iArmorModal) => {
         internalDispatch({ type: ArmorModalActions.setIsAddingNew, payload: { isAddingNew: !internalState.isAddingNew } })
     }
 
-    // When an existing piece of armor has been selected for edit.
-    const onArmorSelected = (_e: any, {value}: any) => {
-        const selectedArmor: Armor = armorList.find(_a => _a.armorName === value)
+    const onDropdownChange = (_e: any, {value}: any) => {
         
-        if (selectedArmor) {
-            internalDispatch({ type: ArmorModalActions.setArmorProps, payload: {
-                armorType: selectedArmor.type,
-                armorAmount: selectedArmor.baseArmor,
-                armorBrand: selectedArmor.brand,
-            }})
-        }
     }
 
-    // When a Brand has been selected...
-    const onBrandSelected = (_e: any, {value}: any) => {
-        const selectedBrand: Brand = brandList.find(_b => _b.name === value)
+    // // When an existing piece of armor has been selected for edit.
+    // const onArmorSelected = (_e: any, {value}: any) => {
+    //     const selectedArmor: Armor = armorList.find(_a => _a.armorName === value)
+        
+    //     if (selectedArmor) {
+    //         internalDispatch({ type: ArmorModalActions.setArmorProps, payload: {
+    //             armorType: selectedArmor.type,
+    //             armorAmount: selectedArmor.baseArmor,
+    //             armorBrand: selectedArmor.brand,
+    //         }})
+    //     }
+    // }
 
-        if (selectedBrand) {
-            internalDispatch({type: ArmorModalActions.setArmorProps, payload: { armorBrand: selectedBrand }})
-        }
-    }
+    // // When a Brand has been selected...
+    // const onBrandSelected = (_e: any, {value}: any) => {
+    //     const selectedBrand: Brand = brandList.find(_b => _b.name === value)
+
+    //     if (selectedBrand) {
+    //         internalDispatch({type: ArmorModalActions.setArmorProps, payload: { armorBrand: selectedBrand }})
+    //     }
+    // }
 
     // When the Armor Modal has been closed.
     const closeArmorModal = () => {
         internalDispatch({ type: ArmorModalActions.setIsOpen, payload: { isOpen: false } })
     }
+
+    // const changeFieldValue = () => {
+    //     const 
+    // }
 
     // EFFECTS
     useEffect(() => {
