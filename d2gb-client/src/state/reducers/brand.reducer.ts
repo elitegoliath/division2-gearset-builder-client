@@ -29,8 +29,6 @@ export const BrandReducer = (_state: iBrandState = INITIAL_STATE, _action: iRedu
                 })
             })
 
-            console.log(nameList.toJS())
-
             return {
                 ..._state,
                 brandList: bList,

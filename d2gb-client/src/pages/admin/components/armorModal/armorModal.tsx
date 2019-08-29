@@ -3,7 +3,7 @@ import { Modal, Button, Form, FormGroup, Header } from 'semantic-ui-react'
 import { eArmorType, tFormSelectItem } from '../../../../constants'
 import { List } from 'immutable'
 import { Armor } from '../../../../models/armor.model'
-import { ArmorModalReducer, ArmorModalInitialState, ArmorModalActions } from './armorModal.state'
+import { ArmorModalReducer, ArmorModalInitialState, ArmorModalActions, tArmorModalFormFields } from './armorModal.state'
 import { Brand } from '../../../../models/brand.model'
 
 interface iArmorModal {
@@ -27,7 +27,15 @@ export const ArmorModal = (_props: iArmorModal) => {
 
     // COMPONENT STATE
     const [internalState, internalDispatch] = useReducer(ArmorModalReducer, ArmorModalInitialState)
-    const { isOpen, isAddingNew, hasSelectedArmor, armorType, armorAmount } = internalState
+    const { isOpen, isAddingNew, hasSelectedArmor, formFields } = internalState
+
+    const setFormField = (_value: tArmorModalFormFields) => {
+        internalDispatch({type: ArmorModalActions.setFormFields, payload: { formFields: { ..._value } } })
+    }
+
+    const change = ((_e: any, { name, value }: any) => {
+        setFormField({ [name]: value })
+    })
 
     // Options for Armor Type.
     const typeOptions: tFormOption[] = [
@@ -49,40 +57,32 @@ export const ArmorModal = (_props: iArmorModal) => {
         internalDispatch({ type: ArmorModalActions.setIsAddingNew, payload: { isAddingNew: !internalState.isAddingNew } })
     }
 
-    const onDropdownChange = (_e: any, {value}: any) => {
+    // // When an existing piece of armor has been selected for edit.
+    const onArmorSelected = (_e: any, {value}: any) => {
+        const selectedArmor: Armor = armorList.find(_a => _a.armorName === value)
         
+        if (selectedArmor) {
+            setFormField({
+                armorType: selectedArmor.type,
+                armorAmount: selectedArmor.baseArmor,
+                armorBrand: selectedArmor.brand,
+            })
+        }
     }
 
-    // // When an existing piece of armor has been selected for edit.
-    // const onArmorSelected = (_e: any, {value}: any) => {
-    //     const selectedArmor: Armor = armorList.find(_a => _a.armorName === value)
-        
-    //     if (selectedArmor) {
-    //         internalDispatch({ type: ArmorModalActions.setArmorProps, payload: {
-    //             armorType: selectedArmor.type,
-    //             armorAmount: selectedArmor.baseArmor,
-    //             armorBrand: selectedArmor.brand,
-    //         }})
-    //     }
-    // }
-
     // // When a Brand has been selected...
-    // const onBrandSelected = (_e: any, {value}: any) => {
-    //     const selectedBrand: Brand = brandList.find(_b => _b.name === value)
+    const onBrandSelected = (_e: any, {value}: any) => {
+        const selectedBrand: Brand = brandList.find(_b => _b.name === value)
 
-    //     if (selectedBrand) {
-    //         internalDispatch({type: ArmorModalActions.setArmorProps, payload: { armorBrand: selectedBrand }})
-    //     }
-    // }
+        if (selectedBrand) {
+            setFormField({ armorBrand: selectedBrand })
+        }
+    }
 
     // When the Armor Modal has been closed.
     const closeArmorModal = () => {
         internalDispatch({ type: ArmorModalActions.setIsOpen, payload: { isOpen: false } })
     }
-
-    // const changeFieldValue = () => {
-    //     const 
-    // }
 
     // EFFECTS
     useEffect(() => {
@@ -112,8 +112,8 @@ export const ArmorModal = (_props: iArmorModal) => {
                             <Header as='h1' color='teal' textAlign='center'>Adding New Armor</Header>
                             <Button size='small' color='orange' style={modeButtonStyle} onClick={changeMode}>Edit Existing Armor</Button>
                             <FormGroup widths='equal'>
-                                <Form.Input placeholder='Armor Model...' name='model' label='Armor Model' value='' />
-                                <Form.Select placeholder='Armor Type...' name='type' options={typeOptions} label='Armor Type' value='' />
+                                <Form.Input placeholder='Armor Model...' name='armorModel' label='Armor Model' value={formFields.armorModel || ''} onChange={change} />
+                                <Form.Select placeholder='Armor Type...' name='armorType' options={typeOptions} label='Armor Type' value='' />
                             </FormGroup>
                         </div> :
                         <div>
@@ -129,7 +129,7 @@ export const ArmorModal = (_props: iArmorModal) => {
                                     ></Form.Select>
                                 }
                                 {hasSelectedArmor && 
-                                    <Form.Select placeholder='Armor Type...' name='type' options={typeOptions} label='Armor Type' value={armorType} />
+                                    <Form.Select placeholder='Armor Type...' name='type' options={typeOptions} label='Armor Type' value={formFields.armorType || null} />
                                 }
                             </FormGroup>
                         </div>
@@ -138,7 +138,7 @@ export const ArmorModal = (_props: iArmorModal) => {
                     {(isAddingNew || hasSelectedArmor) &&
                     <div>
                         <FormGroup>
-                            <Form.Input placeholder='Armor Amount...' name='amount' label='Armor Amount' value={armorAmount} />
+                            <Form.Input placeholder='Armor Amount...' name='amount' label='Armor Amount' value={formFields.armorAmount || 0} />
                             {brandNameList &&
                                 <Form.Select
                                     label='Brand'
