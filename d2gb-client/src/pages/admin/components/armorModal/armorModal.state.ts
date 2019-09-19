@@ -1,4 +1,6 @@
 import { Brand } from '../../../../models/brand.model'
+import { List } from 'immutable'
+import { Armor } from '../../../../models/armor.model'
 
 export type tArmorModalFormFields = {
     armorModel?: string
@@ -13,6 +15,8 @@ type tArmorModalState = {
     isAddingNew?: boolean
     hasSelectedArmor?: boolean
     formFields?: tArmorModalFormFields
+    modalBrandList?: List<Brand>
+    modalArmorList?: List<Armor>
 }
 
 interface iArmorModalAction {
@@ -24,6 +28,7 @@ export const ArmorModalActions = {
     setIsOpen: 'SET_IS_OPEN',
     setIsAddingNew: 'SET_IS_ADDING_NEW',
     setFormFields: 'SET_FORM_FIELDS',
+    setLists: 'SET_LISTS',
 }
 
 export const ArmorModalInitialState: tArmorModalState = {
@@ -37,6 +42,7 @@ export const ArmorModalInitialState: tArmorModalState = {
         armorBrand: null,
         armorAttributeLimit: 0,
     },
+    modalBrandList: List<Brand>()
 }
 
 export const ArmorModalReducer = (_state: tArmorModalState, _action: iArmorModalAction): tArmorModalState => {
@@ -48,9 +54,14 @@ export const ArmorModalReducer = (_state: tArmorModalState, _action: iArmorModal
             isAddingNew: _action.payload.isAddingNew
         }
         case ArmorModalActions.setFormFields: {
-            console.log('form fields changed: ', _action.payload.formFields)
-            return { ..._state, formFields: { ..._state.formFields, ..._action.payload.formFields }, hasSelectedArmor: true }
+            // TODO: Add checker for Armor and Brand dropdowns in here.
+
+            return { ..._state, formFields: {
+                    ..._state.formFields,
+                    ..._action.payload.formFields
+                }, hasSelectedArmor: true }
         }
+        case ArmorModalActions.setLists: return {..._state, ..._action.payload}
         default: return _state
     }
 }
