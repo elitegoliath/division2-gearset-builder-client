@@ -4,19 +4,19 @@ import { iReduxAction } from '../actions'
 import * as Actions from '../actions/armor.actions'
 import { tFormSelectItem } from '../../constants'
 
-export type iArmorState = {
+export type tArmorState = {
     armorList: List<Armor>
     armorNameList: List<tFormSelectItem>
 }
 
-export const defaultArmorState: iArmorState = {
+export const defaultArmorState: tArmorState = {
     armorList: List<Armor>(),
     armorNameList: List<tFormSelectItem>(),
 }
 
-const INITIAL_STATE: iArmorState = defaultArmorState
+const INITIAL_STATE: tArmorState = defaultArmorState
 
-export const ArmorReducer = (_state: iArmorState = INITIAL_STATE, _action: iReduxAction): iArmorState => {
+export const ArmorReducer = (_state: tArmorState = INITIAL_STATE, _action: iReduxAction): tArmorState => {
     switch(_action.type) {
         // TODO: Add armor to a list. Also add a list of armor names.
         case Actions.RECEIVED_ARMOR_LIST: {

@@ -8,21 +8,23 @@ import { iAppState } from '../../state/reducers'
 import { fetchArmorList } from '../../state/actions/armor.actions'
 import { connect } from 'react-redux'
 import { List } from 'immutable'
-import { Armor } from '../../models/armor.model'
-import { Brand } from '../../models/brand.model'
+import { Armor, Brand, Attribute } from '../../models'
 import { fetchBrandList } from '../../state/actions/brand.actions'
+import { fetchAttributeList } from '../../state/actions/attribute.actions'
 
 interface iAdminPage {
     armorList?: List<Armor>
     armorNameList?: List<tFormSelectItem>
     brandList?: List<Brand>
     brandNameList?: List<tFormSelectItem>
-    fetchArmor?: any
-    fetchBrands?: any
+    attributeList?: List<Attribute>
+    fetchArmor?: Function
+    fetchBrands?: Function
+    fetchAttributes?: Function
 }
 
 export const AdminPage = (_props: iAdminPage) => {
-    const { armorList, armorNameList, brandList, brandNameList, fetchArmor, fetchBrands } = _props
+    const { armorList, armorNameList, brandList, brandNameList, attributeList, fetchArmor, fetchBrands, fetchAttributes } = _props
 
     // console.log('Brand List', armorList)
 
@@ -67,6 +69,7 @@ const mapStateToProps = (_state: iAppState) => ({
     armorNameList: _state.armorState.armorNameList,
     brandList: _state.brandState.brandList,
     brandNameList: _state.brandState.brandNameList,
+    attributeList: _state.attributeState.attributeList,
 })
 
 /**
@@ -75,31 +78,7 @@ const mapStateToProps = (_state: iAppState) => ({
 const mapDispatchToProps = (_dispatch: any) => ({
     fetchArmor: () => _dispatch(fetchArmorList()),
     fetchBrands: () => _dispatch(fetchBrandList()),
+    fetchAttributes: () => _dispatch(fetchAttributeList()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminPage)
-
-// const weaponModal = () => {
-//     const typeOptions: {key: number, text: string, value: number}[] = [
-//         { key: eWeaponType.Rifle , text: eWeaponType[eWeaponType.Rifle], value: eWeaponType.Rifle},
-//     ]
-
-//     const handleSubmit = () => {
-
-//     }
-
-//     return (
-//         <Modal basic trigger={<Button size='mini'>Weapon Modal</Button>}>
-//             <Modal.Content>
-//                 <Segment inverted>
-//                     <Form inverted onSubmit={handleSubmit}>
-//                         <FormGroup widths='equal'>
-//                             <Form.Input placeholder='Weapon Model...' name='model' label='Weapon Model' />
-//                             <Form.Select placeholder='Weapon Type...' name='type' options={typeOptions} label='Weapon Type' />
-//                         </FormGroup>
-//                     </Form>
-//                 </Segment>
-//             </Modal.Content>
-//         </Modal>
-//     )
-// }

@@ -1,3 +1,5 @@
+import { Attribute } from './models/attribute.model'
+
 export enum eEquipmentCategory {
     Weapon,  // 0
     Armor,   // 1
@@ -92,16 +94,16 @@ export type tModifier = {
 //     thirdModifier?: tModifier
 // }
 
-export type tAttribute = {
-    type?: eAttributeType
-    iconURL?: string
-    modifier?: tModifier
-}
+// export type tAttribute = {
+//     type?: eAttributeType
+//     iconURL?: string
+//     modifier?: tModifier
+// }
 
 export type tRequirement = {
     lessThan?: boolean
     amount?: number
-    attribute?: tAttribute
+    attribute?: Attribute
 }
 
 export type tFormSelectItem = {

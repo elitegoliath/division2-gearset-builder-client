@@ -4,9 +4,9 @@ import { iReduxAction } from '.'
 
 const PREFIX = 'BRAND_'
 
-export const RECIEVED_BRAND_LIST = PREFIX + 'RECIEVED_BRAND_LIST'
-export const recievedBrandList = (_payload: List<Brand>): iReduxAction => ({
-    type: RECIEVED_BRAND_LIST,
+export const RECEIVED_BRAND_LIST = PREFIX + 'RECEIVED_BRAND_LIST'
+export const receivedBrandList = (_payload: List<Brand>): iReduxAction => ({
+    type: RECEIVED_BRAND_LIST,
     payload: _payload,
 })
 
@@ -17,12 +17,12 @@ export const fetchBrandList = () => {
                 const request = await getFirestore().collection('brands').get()
                 let brandList: List<Brand> = List<Brand>()
                 request.forEach((_doc: any) => {
-                    brandList = brandList.push(new Brand({ ..._doc.data() }))
+                    brandList = brandList.push(new Brand({..._doc.data()}))
                 })
 
                 // console.log('fetch brands done', brandList.toJS())
 
-                _dispatch(recievedBrandList(brandList))
+                _dispatch(receivedBrandList(brandList))
             } catch (_e) {
                 console.log('Error: ', _e)
             }

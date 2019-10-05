@@ -4,21 +4,21 @@ import { List } from 'immutable'
 import * as Actions from '../actions/brand.actions'
 import { tFormSelectItem } from '../../constants'
 
-export type iBrandState = {
+export type tBrandState = {
     brandList: List<Brand>
     brandNameList: List<tFormSelectItem>
 }
 
-export const defaultBrandState: iBrandState = {
+export const defaultBrandState: tBrandState = {
     brandList: List<Brand>(),
     brandNameList: List<tFormSelectItem>(),
 }
 
-const INITIAL_STATE: iBrandState = defaultBrandState
+const INITIAL_STATE: tBrandState = defaultBrandState
 
-export const BrandReducer = (_state: iBrandState = INITIAL_STATE, _action: iReduxAction): iBrandState => {
-    switch(_action.type) {
-        case Actions.RECIEVED_BRAND_LIST: {
+export const BrandReducer = (_state: tBrandState = INITIAL_STATE, _action: iReduxAction): tBrandState => {
+    switch (_action.type) {
+        case Actions.RECEIVED_BRAND_LIST: {
             let nameList: List<tFormSelectItem> = List<tFormSelectItem>()
             const bList: List<Brand> = _action.payload
             bList.forEach(b => {
@@ -35,6 +35,8 @@ export const BrandReducer = (_state: iBrandState = INITIAL_STATE, _action: iRedu
                 brandNameList: nameList,
             }
         }
-        default: return _state
+
+        default:
+            return _state
     }
 }
